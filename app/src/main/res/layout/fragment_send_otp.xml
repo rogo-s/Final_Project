@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="23dp"
+    android:layout_marginTop="46dp"
+    android:layout_marginBottom="67dp"
+    tools:context=".view.fragment.SendOtpFragment">
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:src="@drawable/ic_back"
+        android:layout_marginBottom="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtSendOtp"
+        android:text="Masukkan OTP"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_below="@id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/etSendOtp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/txtSendOtp">
+        <TextView
+            android:text="Ketik 6 digit kode yang dikirimkan"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="ke +6212121212121"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.chaos.view.PinView
+            android:id="@+id/sendOtp"
+            app:itemCount="6"
+            app:itemRadius="16dp"
+            app:lineColor="#D0D0D0"
+            app:hideLineWhenFilled="false"
+            android:cursorVisible="true"
+            android:inputType="number"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/PinWidget.PinView" />
+
+        <TextView
+            android:text="Kirim Ulang OTP dalam 60 detik"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="41dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="Minta kode baru via Email"
+            android:textColor="#7126B5"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</RelativeLayout>
