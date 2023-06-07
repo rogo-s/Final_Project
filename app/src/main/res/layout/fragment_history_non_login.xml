@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragment.HistoryNonLoginFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvRiwayatPesanan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/riwayat_pesanan"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvHarusLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/maaf_anda_harus_login_terlebih_dahulu"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="107dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        app:layout_constraintTop_toBottomOf="@id/tvRiwayatPesanan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivNonLoginHistory"
+        android:layout_width="156dp"
+        android:layout_height="242dp"
+        android:src="@drawable/bg_nonlogin"
+        app:layout_constraintTop_toBottomOf="@id/tvHarusLogin"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMasuk"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        app:cornerRadius="16dp"
+        android:text="@string/masuk"
+        android:fontFamily="@font/poppins_regular"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/darkblue04"
+        app:layout_constraintTop_toBottomOf="@id/ivNonLoginHistory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
