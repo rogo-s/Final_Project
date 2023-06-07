@@ -2,4 +2,23 @@
     <string name="app_name">Final_Project</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hei_mau_kemana">Hei, Mau kemana?</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="pulang_pergi">Pulang-Pergi?</string>
+    <string name="departure">Departure</string>
+    <string name="returned">Returned</string>
+    <string name="pilih_tanggal">Pilih Tanggal</string>
+    <string name="passengers">Passengers</string>
+    <string name="seat_class">Seat Class</string>
+    <string name="cari_penerbangan">Cari Penerbangan</string>
+    <string name="destinasi_favorite">Destinasi Favorite</string>
+    <string name="airasia">AirAsia</string>
+    <string name="home">Home</string>
+    <string name="riwayat">Riwayat</string>
+    <string name="notifikasi">Notifikasi</string>
+    <string name="akun">Akun</string>
+    <string name="riwayat_pesanan">Riwayat Pesanan</string>
+    <string name="maaf_anda_harus_login_terlebih_dahulu">Maaf anda harus login terlebih dahulu!</string>
+    <string name="masuk">Masuk</string>
 </resources>

@@ -9,7 +9,11 @@
         android:id="@+id/splashFragment"
         android:name="com.rogo.final_project.view.fragment.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" />
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.rogo.final_project.view.fragment.LoginFragment"
@@ -41,4 +45,42 @@
         android:name="com.rogo.final_project.view.fragment.ResetPasswordFragment"
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" />
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.rogo.final_project.view.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment2_to_notifFragment2"
+            app:destination="@id/notifFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_akunNonLoginFragment2"
+            app:destination="@id/akunNonLoginFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_historyNonLoginFragment2"
+            app:destination="@id/historyNonLoginFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/notifFragment2"
+        android:name="com.rogo.final_project.view.fragment.NotifFragment"
+        android:label="fragment_notif"
+        tools:layout="@layout/fragment_notif" />
+    <fragment
+        android:id="@+id/akunNonLoginFragment2"
+        android:name="com.rogo.final_project.view.fragment.AkunNonLoginFragment"
+        android:label="fragment_akun_non_login"
+        tools:layout="@layout/fragment_akun_non_login" >
+        <action
+            android:id="@+id/action_akunNonLoginFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyNonLoginFragment2"
+        android:name="com.rogo.final_project.view.fragment.HistoryNonLoginFragment"
+        android:label="fragment_history_non_login"
+        tools:layout="@layout/fragment_history_non_login" >
+        <action
+            android:id="@+id/action_historyNonLoginFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>
