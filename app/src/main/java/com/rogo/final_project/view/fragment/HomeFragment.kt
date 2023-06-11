@@ -57,6 +57,9 @@ class HomeFragment : Fragment() {
         binding.tvJakarta.setOnClickListener {
             BottomSheetPencarianFragment().show(requireActivity().supportFragmentManager,BottomSheetPencarianFragment.bottomTag)
         }
+        binding.etReturn.setOnClickListener {
+            BottomSheetDatePickerFragment().show(requireActivity().supportFragmentManager,BottomSheetDatePickerFragment.bottomTag)
+        }
     }
 
 
