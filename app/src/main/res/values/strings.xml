@@ -21,4 +21,7 @@
     <string name="riwayat_pesanan">Riwayat Pesanan</string>
     <string name="maaf_anda_harus_login_terlebih_dahulu">Maaf anda harus login terlebih dahulu!</string>
     <string name="masuk">Masuk</string>
+    <string name="anak">Anak</string>
+    <string name="bayi">Bayi</string>
+    <string name="daftar">Daftar</string>
 </resources>

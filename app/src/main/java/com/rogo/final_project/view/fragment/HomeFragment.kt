@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentHomeBinding
 import com.rogo.final_project.view.Adapter.HomeAdapter
@@ -49,6 +50,13 @@ class HomeFragment : Fragment() {
         )
         homeAdapter = HomeAdapter(destinasiItem)
         binding.rvDestinasi.adapter = homeAdapter
+
+        binding.etPassengers.setOnClickListener {
+            SetPenempunganFragment().show(requireActivity().supportFragmentManager,SetPenempunganFragment.bottomTag)
+        }
+        binding.tvJakarta.setOnClickListener {
+            BottomSheetPencarianFragment().show(requireActivity().supportFragmentManager,BottomSheetPencarianFragment.bottomTag)
+        }
     }
 
 
