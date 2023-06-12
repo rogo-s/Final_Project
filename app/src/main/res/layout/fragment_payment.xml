@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragment.PaymentFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:background="#4B1979"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/btnBack"
+                android:src="@drawable/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@id/btnBack"
+                android:fontFamily="@font/poppins_medium"
+                android:lineHeight="20dp"
+                android:text="Proses Pembayaran"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appBar"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/appBar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp">
+
+            <LinearLayout
+                android:id="@+id/labelPassangers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/passangers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:lineHeight="20dp"
+                    android:text="Passengers : 2 Adults, 1 Baby"
+                    android:textColor="@color/NEUTRAL05"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutFlightSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/labelPassangers">
+
+                <LinearLayout
+                    android:id="@+id/Departure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="2dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/depature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:lineHeight="20dp"
+                        android:text="Jakarta"
+                        android:textColor="@color/NEUTRAL05"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tglPergi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineHeight="20dp"
+                        android:text="5 Maret 2023"
+                        android:textColor="@color/NEUTRAL05"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/jamPergi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineHeight="20dp"
+                        android:text="19:10"
+                        android:textColor="@color/NEUTRAL05"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutFlightTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_toEndOf="@id/Departure"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/waktuPerjalanan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineHeight="18dp"
+                        android:text="4h 0m"
+                        android:textColor="@color/NEUTRAL03"
+                        android:textSize="12sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:src="@drawable/panah" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineHeight="18dp"
+                        android:text="Direct"
+                        android:textColor="@color/NEUTRAL03"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutArrive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toEndOf="@id/layoutFlightTime"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/destination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:lineHeight="20dp"
+                        android:text="Melbourne"
+                        android:textColor="@color/NEUTRAL05"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tglTiba"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineHeight="20dp"
+                        android:text="5 Maret 2023"
+                        android:textColor="@color/NEUTRAL05"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/jamTiba"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineHeight="20dp"
+                        android:text="21:10"
+                        android:textColor="@color/NEUTRAL05"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/lokasi" />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="170dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/lokasi" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/grid"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/layoutFlightSchedule"
+                android:layout_marginTop="16dp"
+                android:background="@color/NEUTRAL02" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/grid">
+
+
+                <LinearLayout
+                    android:id="@+id/layoutAirline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineHeight="18dp"
+                        android:text="Booking Code: "
+                        android:textColor="@color/NEUTRAL05"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/bookingCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineHeight="18dp"
+                        android:text="453653657"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutClass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_toEndOf="@id/layoutAirline"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Class: "
+                        android:textColor="@color/NEUTRAL05"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/kelas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineHeight="18dp"
+                        android:text="Economy"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutharga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_toEndOf="@id/layoutClass"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Total: "
+                        android:textColor="@color/NEUTRAL05"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="2dp"
+                        android:lineHeight="24dp"
+                        android:text="IDR 9.850.000"
+                        android:textColor="@color/purple_500"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardview"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:background="#3C3C3C"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/btnBack2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/bawah" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:lineHeight="20dp"
+                android:text="Gopay"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar3"
+        android:background="#7126B5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_below="@id/appBar2"
+        app:layout_constraintTop_toTopOf="parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/btnBack3"
+                android:src="@drawable/atas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="8dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:lineHeight="20dp"
+                android:text="Credit Card"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appBar3"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/appBar">
+
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp">
+
+            <LinearLayout
+                android:id="@+id/layoutCardNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="2dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:lineHeight="20dp"
+                    android:text="Card number"
+                    android:textColor="@color/NEUTRAL05"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/editTextText3"
+                    android:layout_width="296dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textColor="@color/NEUTRAL03"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="4480 0000 0000 0000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:lineHeight="20dp"
+                    android:text="Card Holder Name"
+                    android:textColor="@color/NEUTRAL05"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/editTextText2"
+                    android:layout_width="296dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textColor="@color/NEUTRAL03"
+                    android:inputType="text"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="John Doe" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutcvv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutCardNumber"
+                android:layout_marginStart="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:lineHeight="20dp"
+                    android:text="CVV"
+                    android:textColor="@color/NEUTRAL05"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/editTextText4"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textColor="@color/NEUTRAL03"
+                    android:inputType="text"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutexpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutCardNumber"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="198dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:lineHeight="20dp"
+                    android:text="Expiry date"
+                    android:textColor="@color/NEUTRAL05"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/edit_expdate"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/poppins_medium"
+                    android:inputType="text"
+                    android:textColor="@color/NEUTRAL03"
+                    android:text="07/24" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutexpire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="13dp"
+                android:layout_toEndOf="@id/layoutcvv"
+                android:gravity="center"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/gambar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutCardNumber"
+                android:layout_marginStart="133dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="13dp"
+                android:layout_toEndOf="@+id/layoutcvv"
+                android:gravity="center"
+                android:orientation="vertical">
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/gambar_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardview2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="60dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="100dp"
+            android:src="@drawable/mastercard" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/visa" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/amex" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/paypal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gambar_view"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnBayar"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="347dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#4B1979"
+            android:fontFamily="@font/poppins_medium"
+            android:lineHeight="24dp"
+            android:text="@string/bayar"
+            android:textAlignment="center"
+            android:textColor="@color/NEUTRAL01"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+
+</RelativeLayout>
