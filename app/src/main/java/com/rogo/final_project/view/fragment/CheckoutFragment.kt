@@ -6,20 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rogo.final_project.R
-import com.rogo.final_project.databinding.FragmentSendOtpBinding
+import com.rogo.final_project.databinding.FragmentCheckoutBinding
 
-class SendOtpFragment : Fragment() {
-    lateinit var binding : FragmentSendOtpBinding
+class CheckoutFragment : Fragment() {
+    lateinit var binding : FragmentCheckoutBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentSendOtpBinding.inflate(inflater, container, false)
+        binding = FragmentCheckoutBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 }

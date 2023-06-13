@@ -25,4 +25,9 @@
     <string name="bayi">Bayi</string>
     <string name="daftar">Daftar</string>
     <string name="bayar">Bayar</string>
+    <string-array name="title">
+        <item>Mr.</item>
+        <item>Mrs.</item>
+        <item>Ms.</item>
+    </string-array>
 </resources>

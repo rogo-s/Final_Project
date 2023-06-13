@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rogo.final_project.R
-import com.rogo.final_project.databinding.FragmentSendOtpBinding
+import com.rogo.final_project.databinding.FragmentCheckoutBioBinding
 
-class SendOtpFragment : Fragment() {
-    lateinit var binding : FragmentSendOtpBinding
+class CheckoutBioFragment : Fragment() {
+
+    lateinit var binding : FragmentCheckoutBioBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentSendOtpBinding.inflate(inflater, container, false)
+        binding = FragmentCheckoutBioBinding.inflate(inflater, container, false)
         return binding.root
     }
 
