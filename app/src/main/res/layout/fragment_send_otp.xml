@@ -67,6 +67,16 @@
             style="@style/PinWidget.PinView" />
 
         <TextView
+            android:id="@+id/verifyOtp"
+            android:text="verify OTP"
+            android:textColor="#7126B5"
+            android:layout_gravity="right"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
             android:text="Kirim Ulang OTP dalam 60 detik"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins_regular"
@@ -75,6 +85,7 @@
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:id="@+id/txtNewOtp"
             android:text="Minta kode baru via Email"
             android:textColor="#7126B5"
             android:textAlignment="center"

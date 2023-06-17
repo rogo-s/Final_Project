@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentSplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 class SplashFragment : Fragment() {
     lateinit var binding : FragmentSplashBinding

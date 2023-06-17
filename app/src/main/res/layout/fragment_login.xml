@@ -101,7 +101,6 @@
                 android:inputType="textWebPassword"
                 android:textColorHint="#757575" />
         </com.google.android.material.textfield.TextInputLayout>
-
     </LinearLayout>
 
     <Button
