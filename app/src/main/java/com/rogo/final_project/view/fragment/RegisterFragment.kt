@@ -1,20 +1,16 @@
 package com.rogo.final_project.view.fragment
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentRegisterBinding
+import com.rogo.final_project.view.model.data.DataRegist
 import com.rogo.final_project.view.model.data.User
 import com.rogo.final_project.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,7 +38,7 @@ class RegisterFragment : Fragment() {
             val phoneNumber = binding.etPhoneReg.text.toString()
             val password = binding.etPassReg.text.toString()
             if (password.length >= 8) {
-                doRegist(User(name, email, password, "firstname", "lastname", phoneNumber))
+                doRegist(DataRegist(email, "", "", name, password, phoneNumber))
             } else {
                 Toast.makeText(requireContext(), "Password min 8 karakter!", Toast.LENGTH_SHORT).show()
             }
@@ -53,7 +49,7 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    fun doRegist(data : User) {
+    fun doRegist(data : DataRegist) {
         registerViewModel.registDataUser(data)
         registerViewModel.usersRegist.observe(viewLifecycleOwner) {
             if (it != null) {

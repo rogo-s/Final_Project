@@ -8,7 +8,7 @@ import retrofit2.http.POST
 interface RestfulApi {
     @POST("register")
     fun registerUser(
-        @Body data: User
+        @Body data: DataRegist
     ) : Call<ResponseDataRegist>
 
     @POST("login")

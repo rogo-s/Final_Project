@@ -5,8 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.rogo.final_project.network.RestfulApi
 import com.rogo.final_project.view.model.data.DataLogin
 import com.rogo.final_project.view.model.data.ResponseDataLogin
-import com.rogo.final_project.view.model.data.ResponseDataRegist
-import com.rogo.final_project.view.model.data.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
