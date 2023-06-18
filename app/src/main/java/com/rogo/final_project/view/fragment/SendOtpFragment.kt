@@ -42,7 +42,7 @@ class SendOtpFragment : Fragment() {
 
         userVm = ViewModelProvider(this).get(UserViewModel::class.java)
 
-        binding.nomor.text = "ke $getEmail"
+        binding.email.text = "ke $getEmail"
 
         binding.verifyOtp.setOnClickListener{
             verifyOtp()
