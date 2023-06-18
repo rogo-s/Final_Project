@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName
 data class DataRegist(
     @SerializedName("email")
     val email: String,
-    @SerializedName("firstName")
-    val firstName: String,
-    @SerializedName("lastName")
-    val lastName: String,
+//    @SerializedName("firstName")
+//    val firstName: String,
+//    @SerializedName("lastName")
+//    val lastName: String,
     @SerializedName("name")
     val name: String,
     @SerializedName("password")

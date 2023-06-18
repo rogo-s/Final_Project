@@ -45,7 +45,11 @@
         android:id="@+id/sendOtpFragment"
         android:name="com.rogo.final_project.view.fragment.SendOtpFragment"
         android:label="fragment_send_otp"
-        tools:layout="@layout/fragment_send_otp" />
+        tools:layout="@layout/fragment_send_otp" >
+        <action
+            android:id="@+id/action_sendOtpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
         android:name="com.rogo.final_project.view.fragment.ResetPasswordFragment"

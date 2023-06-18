@@ -43,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/nomor"
             android:text="ke +6212121212121"
             android:textColor="@color/black"
             android:textAlignment="center"
@@ -76,13 +77,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:text="Kirim Ulang OTP dalam 60 detik"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_marginBottom="41dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+<!--        <TextView-->
+<!--            android:text="Kirim Ulang OTP dalam 60 detik"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:fontFamily="@font/poppins_regular"-->
+<!--            android:layout_marginBottom="41dp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
 
         <TextView
             android:id="@+id/txtNewOtp"
@@ -93,6 +94,7 @@
             android:fontFamily="@font/poppins_bold"
             android:layout_gravity="center"
             android:layout_marginBottom="4dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>

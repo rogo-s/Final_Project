@@ -11,13 +11,13 @@ import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentLoginBinding
 import com.rogo.final_project.view.model.data.DataLogin
-import com.rogo.final_project.viewmodel.LoginViewModel
+import com.rogo.final_project.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     lateinit var binding : FragmentLoginBinding
-    private val loginViewModel : LoginViewModel by viewModels()
+    private val loginViewModel : UserViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

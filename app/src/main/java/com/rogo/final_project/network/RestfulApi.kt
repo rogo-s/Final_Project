@@ -15,4 +15,14 @@ interface RestfulApi {
     fun loginUser(
         @Body data: DataLogin
     ) : Call<ResponseDataLogin>
+
+    @POST("verify")
+    fun otpUser(
+        @Body data: DataOtp
+    ) : Call<ResponseVerify>
+
+    @POST("resend-otp")
+    fun resendOtp(
+        @Body data: DataResendOtp
+    ) : Call<ResponseResendOtp>
 }
