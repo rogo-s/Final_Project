@@ -1,9 +1,9 @@
-package com.rogo.final_project.view.model.data
+package com.rogo.final_project.view.model.data.profile
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ResponseVerify(
+data class ResponseProfileUpdate(
     @SerializedName("message")
     val message: String,
     @SerializedName("status")

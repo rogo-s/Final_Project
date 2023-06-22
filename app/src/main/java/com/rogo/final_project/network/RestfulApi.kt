@@ -1,9 +1,24 @@
 package com.rogo.final_project.network
 
 import com.rogo.final_project.view.model.data.*
+import com.rogo.final_project.view.model.data.otp.DataOtp
+import com.rogo.final_project.view.model.data.otp.DataResendOtp
+import com.rogo.final_project.view.model.data.otp.ResponseResendOtp
+import com.rogo.final_project.view.model.data.otp.ResponseVerify
+import com.rogo.final_project.view.model.data.login.DataLogin
+import com.rogo.final_project.view.model.data.login.ResponseDataLogin
+import com.rogo.final_project.view.model.data.profile.Data
+import com.rogo.final_project.view.model.data.profile.ResponseGetDataProfile
+import com.rogo.final_project.view.model.data.profile.ResponseProfileUpdate
+import com.rogo.final_project.view.model.data.profile.UpdateProfile
+import com.rogo.final_project.view.model.data.register.DataRegist
+import com.rogo.final_project.view.model.data.register.ResponseDataRegist
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 
 interface RestfulApi {
     @POST("register")
@@ -25,4 +40,20 @@ interface RestfulApi {
     fun resendOtp(
         @Body data: DataResendOtp
     ) : Call<ResponseResendOtp>
+
+//    @DELETE("logout")
+//    fun deleteUser(
+//        @Body
+//    )
+
+    @PUT("profile/update")
+    fun updateProfile(
+        @Header ("Authorization") accessToken : String,
+        @Body data: UpdateProfile
+    ) : Call<ResponseProfileUpdate>
+
+    @GET("profile")
+    fun dataProfile(
+        @Header ("Authorization") accessToken: String
+    ) : Call<ResponseGetDataProfile>
 }

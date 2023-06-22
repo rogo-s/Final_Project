@@ -4,7 +4,18 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.rogo.final_project.network.RestfulApi
-import com.rogo.final_project.view.model.data.*
+import com.rogo.final_project.view.model.data.otp.DataOtp
+import com.rogo.final_project.view.model.data.otp.DataResendOtp
+import com.rogo.final_project.view.model.data.otp.ResponseResendOtp
+import com.rogo.final_project.view.model.data.otp.ResponseVerify
+import com.rogo.final_project.view.model.data.login.DataLogin
+import com.rogo.final_project.view.model.data.login.ResponseDataLogin
+import com.rogo.final_project.view.model.data.profile.Data
+import com.rogo.final_project.view.model.data.profile.ResponseGetDataProfile
+import com.rogo.final_project.view.model.data.profile.ResponseProfileUpdate
+import com.rogo.final_project.view.model.data.profile.UpdateProfile
+import com.rogo.final_project.view.model.data.register.DataRegist
+import com.rogo.final_project.view.model.data.register.ResponseDataRegist
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,6 +41,17 @@ class UserViewModel @Inject constructor(var api: RestfulApi) : ViewModel() {
     private val resendOto = MutableLiveData<ResponseResendOtp?>()
     val userResendOto: MutableLiveData<ResponseResendOtp?> = resendOto
 
+    //deleteViewModel
+//    private val _usersLogout = MutableLiveData<ResponseLogout>()
+//    val usersLogout : MutableLiveData<ResponseLogout> = _usersLogout
+
+    //updateViewModel
+    private val _profileUpdate = MutableLiveData<ResponseProfileUpdate?>()
+    val profileUpdate : MutableLiveData<ResponseProfileUpdate?> = _profileUpdate
+
+    //getProfileViewModel
+    private val _usersGetProfile = MutableLiveData<ResponseGetDataProfile?>()
+    val usersGetProfile : MutableLiveData<ResponseGetDataProfile?> = _usersGetProfile
 
     //login
     fun loginDataUser(data : DataLogin){
@@ -114,4 +136,62 @@ class UserViewModel @Inject constructor(var api: RestfulApi) : ViewModel() {
 
             })
     }
+
+//    fun logoutDataUser(data : DataRegist){
+//        api.deleteUser(data).enqueue(object : Callback<ResponseLogout> {
+//            override fun onResponse(
+//                call: Call<ResponseLogout>,
+//                response: Response<ResponseLogout>
+//            ) {
+//                if(response.isSuccessful){
+//                    _usersLogout.postValue(response.body())
+//                }else{
+//                    _usersLogout.postValue(null)
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ResponseLogout>, t: Throwable) {
+//                _usersLogout.postValue(null)
+//            }
+//        })
+//    }
+
+    fun updateDataProfile(accessToken : String, data : UpdateProfile){
+        api.updateProfile("Bearer $accessToken", data).enqueue(object : Callback<ResponseProfileUpdate> {
+            override fun onResponse(
+                call: Call<ResponseProfileUpdate>,
+                response: Response<ResponseProfileUpdate>
+            ) {
+                if(response.isSuccessful){
+                    _profileUpdate.postValue(response.body())
+                }else{
+                    _profileUpdate.postValue(null)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseProfileUpdate>, t: Throwable) {
+                _profileUpdate.postValue(null)
+            }
+        })
+    }
+
+    fun getDataProfile(accessToken : String){
+        api.dataProfile("Bearer $accessToken").enqueue(object : Callback<ResponseGetDataProfile> {
+            override fun onResponse(
+                call: Call<ResponseGetDataProfile>,
+                response: Response<ResponseGetDataProfile>
+            ) {
+                if(response.isSuccessful){
+                    _usersGetProfile.postValue(response.body())
+                }else{
+                    _usersGetProfile.postValue(null)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseGetDataProfile>, t: Throwable) {
+                _usersGetProfile.postValue(null)
+            }
+        })
+    }
+
 }

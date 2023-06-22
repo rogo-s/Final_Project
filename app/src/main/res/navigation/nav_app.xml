@@ -69,6 +69,12 @@
         <action
             android:id="@+id/action_homeFragment2_to_historyNonLoginFragment2"
             app:destination="@id/historyNonLoginFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_fragmentAkunLogin"
+            app:destination="@id/fragmentAkunLogin" />
+        <action
+            android:id="@+id/action_homeFragment2_to_editProfileFragment2"
+            app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/notifFragment2"
@@ -95,5 +101,23 @@
         <action
             android:id="@+id/action_historyNonLoginFragment2_to_loginFragment2"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.rogo.final_project.view.fragment.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_fragmentAkunLogin"
+            app:destination="@id/fragmentAkunLogin" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAkunLogin"
+        android:name="com.rogo.final_project.view.fragment.FragmentAkunLogin"
+        android:label="fragment_akun_login"
+        tools:layout="@layout/fragment_akun_login" >
+        <action
+            android:id="@+id/action_fragmentAkunLogin_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
 </navigation>

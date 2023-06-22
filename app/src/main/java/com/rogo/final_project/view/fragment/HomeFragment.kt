@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -14,10 +15,11 @@ import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentHomeBinding
 import com.rogo.final_project.view.Adapter.HomeAdapter
 import com.rogo.final_project.view.model.data.DestinasiItem
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     lateinit var binding : FragmentHomeBinding
@@ -69,6 +71,9 @@ class HomeFragment : Fragment() {
         }
         binding.etSeat.setOnClickListener {
             BottomSheetKelasFragment().show(requireActivity().supportFragmentManager,BottomSheetKelasFragment.bottomTag)
+        }
+        binding.txtEditProfile.setOnClickListener{
+            findNavController().navigate(R.id.action_homeFragment2_to_editProfileFragment2)
         }
 
     }

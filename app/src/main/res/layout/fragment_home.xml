@@ -281,6 +281,15 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtEditProfile"
+                android:text="editProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDestinasiFavorite" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCariPenerbangan"
                 android:layout_width="300dp"

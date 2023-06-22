@@ -12,10 +12,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentSendOtpBinding
-import com.rogo.final_project.view.model.data.DataOtp
-import com.rogo.final_project.view.model.data.DataResendOtp
+import com.rogo.final_project.view.model.data.otp.DataOtp
+import com.rogo.final_project.view.model.data.otp.DataResendOtp
 import com.rogo.final_project.viewmodel.UserViewModel
-//import com.rogo.final_project.view.model.data.DataOtp
+//import com.rogo.final_project.view.model.data.Otp.DataOtp
 //import com.rogo.final_project.viewmodel.VerifyViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,7 +37,7 @@ class SendOtpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sharedPreferences = requireContext().getSharedPreferences("Regist", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         var getEmail = sharedPreferences.getString("email", "")
 
         userVm = ViewModelProvider(this).get(UserViewModel::class.java)

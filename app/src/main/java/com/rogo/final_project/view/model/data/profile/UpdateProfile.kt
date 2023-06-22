@@ -1,11 +1,9 @@
-package com.rogo.final_project.view.model.data
+package com.rogo.final_project.view.model.data.profile
 
 
 import com.google.gson.annotations.SerializedName
 
-data class User(
-    @SerializedName("email")
-    val email: String,
+data class UpdateProfile(
     @SerializedName("name")
     val name: String,
     @SerializedName("phoneNumber")

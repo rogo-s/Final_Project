@@ -25,8 +25,8 @@ class CheckoutBioPenumpangFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val title = resources.getStringArray(R.array.title)
-        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, title)
-        binding.autoCompleteTextView.setAdapter(arrayAdapter)
+//        val title = resources.getStringArray(R.array.title)
+//        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, title)
+//        binding.auto.setAdapter(arrayAdapter)
     }
 }

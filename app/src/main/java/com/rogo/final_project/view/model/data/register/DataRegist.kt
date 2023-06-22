@@ -1,4 +1,4 @@
-package com.rogo.final_project.view.model.data
+package com.rogo.final_project.view.model.data.register
 
 
 import com.google.gson.annotations.SerializedName

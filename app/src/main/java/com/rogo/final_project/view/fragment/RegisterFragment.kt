@@ -8,14 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentRegisterBinding
-import com.rogo.final_project.view.model.data.DataOtp
-import com.rogo.final_project.view.model.data.DataRegist
-import com.rogo.final_project.view.model.data.User
+import com.rogo.final_project.view.model.data.register.DataRegist
 import com.rogo.final_project.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,7 +35,7 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         registerViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-        pref = requireContext().getSharedPreferences("Regist", Context.MODE_PRIVATE)
+        pref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
         binding.btnRegist.setOnClickListener {
             register()
