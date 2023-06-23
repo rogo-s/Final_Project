@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_editProfileFragment2"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_setPenempunganFragment"
+            app:destination="@id/setPenempunganFragment" />
     </fragment>
     <fragment
         android:id="@+id/notifFragment2"
@@ -120,4 +123,13 @@
             android:id="@+id/action_fragmentAkunLogin_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/setPenempunganFragment"
+        android:name="com.rogo.final_project.view.fragment.SetPenempunganFragment"
+        android:label="fragment_set_penempungan"
+        tools:layout="@layout/fragment_set_penempungan" >
+        <action
+            android:id="@+id/action_setPenempunganFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </dialog>
 </navigation>

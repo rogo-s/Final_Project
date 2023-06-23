@@ -36,6 +36,7 @@ class LoginFragment : Fragment() {
 
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
+
         binding.btnLogin.setOnClickListener {
             doLogin()
         }
@@ -59,7 +60,7 @@ class LoginFragment : Fragment() {
             loginViewModel.usersLogin.observe(viewLifecycleOwner){
                 if (it != null) {
                     val sPref = sharedPref.edit()
-                    sPref.putString("accessToken", it.accessToken)
+                    sPref.putString("token", it.accessToken)
                     sPref.apply()
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment2)
                 }

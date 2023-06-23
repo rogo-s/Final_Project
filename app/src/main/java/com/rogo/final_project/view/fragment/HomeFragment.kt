@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentHomeBinding
 import com.rogo.final_project.view.Adapter.HomeAdapter
 import com.rogo.final_project.view.model.data.DestinasiItem
+import com.rogo.final_project.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
@@ -25,6 +27,7 @@ class HomeFragment : Fragment() {
     lateinit var binding : FragmentHomeBinding
     lateinit var homeAdapter: HomeAdapter
     private var tanggalKembali: String? = null
+    private lateinit var homeViewModel : HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +42,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
 
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         getTanggalKembali()
+
+        getSetPenumpang()
 
         binding.rvDestinasi.layoutManager = layoutManager
 
@@ -61,8 +67,9 @@ class HomeFragment : Fragment() {
         binding.rvDestinasi.adapter = homeAdapter
 
         binding.etPassengers.setOnClickListener {
-            SetPenempunganFragment().show(requireActivity().supportFragmentManager,SetPenempunganFragment.bottomTag)
+            findNavController().navigate(R.id.action_homeFragment2_to_setPenempunganFragment)
         }
+
         binding.tvJakarta.setOnClickListener {
             BottomSheetPencarianFragment().show(requireActivity().supportFragmentManager,BottomSheetPencarianFragment.bottomTag)
         }
@@ -79,12 +86,20 @@ class HomeFragment : Fragment() {
     }
     fun getTanggalKembali() {
         if (tanggalKembali == null) {
-            binding.etDepature.setText("Pilih Tanggal")
+            binding.etDepature.setText("")
         } else {
             binding.etDepature.setText(tanggalKembali)
             binding.etDepature.setTextColor(resources.getColor(R.color.black))
 
         }
+    }
+
+    private fun getSetPenumpang(){
+        val dewasa = homeViewModel.getPenumpangDewasa()
+        val anak = homeViewModel.getPenumpangAnak()
+        val bayi = homeViewModel.getPenumpangBayi()
+        val total = dewasa + anak + bayi
+        binding.etPassengers.text = "$total Penumpang"
     }
 
 

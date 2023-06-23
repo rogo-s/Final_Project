@@ -243,13 +243,30 @@
                         android:src="@drawable/ic_person"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvPassengers" />
-                    <com.google.android.material.textfield.TextInputEditText
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/etPassengers"
-                        android:layout_width="105dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        app:layout_constraintStart_toEndOf="@id/ivPerson"
-                        app:layout_constraintTop_toBottomOf="@id/tvPassengers" />
+                        android:layout_marginStart="62dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="2 Penumpang"
+                        android:textColor="#000000"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvPassengers"/>
+
+                    <View
+                        android:id="@+id/linePass"
+                        android:layout_width="90dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="62dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/neutral02"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/etPassengers" />
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/tvSeat"
                         android:layout_width="wrap_content"

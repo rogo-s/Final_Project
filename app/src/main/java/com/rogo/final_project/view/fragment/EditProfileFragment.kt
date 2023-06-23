@@ -41,26 +41,26 @@ class EditProfileFragment : Fragment() {
         binding.etNameProf.setText(getName)
         binding.etPhoneProf.setText(getPhone)
 
-//        getdataProfile()
+        getdataProfile()
 
         binding.btnUpdate.setOnClickListener{
             updateProfile()
         }
     }
 
-//    fun getdataProfile(){
-//        val accessToken = sharedPref.getString("accessToken", "").toString()
-//        profileViewModel.getDataProfile(accessToken)
-//        profileViewModel.usersGetProfile.observe(viewLifecycleOwner){
-//            binding.etNameProf.setText(it!!.data.name)
-//            binding.etPhoneProf.setText(it!!.data.phoneNumber)
-//        }
-//    }
+    fun getdataProfile(){
+        val accessToken = sharedPref.getString("token", "").toString()
+        profileViewModel.getDataProfile(accessToken)
+        profileViewModel.usersGetProfile.observe(viewLifecycleOwner){
+            binding.etNameProf.setText(it!!.data.name)
+            binding.etPhoneProf.setText(it!!.data.phoneNumber)
+        }
+    }
 
     fun updateProfile(){
         val name = binding.etNameProf.text.toString()
         val phoneNumber = binding.etPhoneProf.text.toString()
-        val accessToken = sharedPref.getString("accessToken", "").toString()
+        val accessToken = sharedPref.getString("token", "").toString()
         val dataProfile = UpdateProfile(name, phoneNumber)
         profileViewModel.updateDataProfile(accessToken, dataProfile)
         profileViewModel.profileUpdate.observe(viewLifecycleOwner){
