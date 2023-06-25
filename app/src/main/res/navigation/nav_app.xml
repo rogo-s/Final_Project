@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_editProfileFragment2"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_hasilPencarianFragment"
+            app:destination="@id/hasilPencarianFragment" />
     </fragment>
     <fragment
         android:id="@+id/notifFragment2"
@@ -120,4 +123,9 @@
             android:id="@+id/action_fragmentAkunLogin_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/hasilPencarianFragment"
+        android:name="com.rogo.final_project.view.fragment.HasilPencarianFragment"
+        android:label="fragment_hasil_pencarian"
+        tools:layout="@layout/fragment_hasil_pencarian" />
 </navigation>

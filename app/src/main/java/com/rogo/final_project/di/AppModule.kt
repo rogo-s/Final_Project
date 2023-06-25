@@ -1,9 +1,15 @@
 package com.rogo.final_project.di
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import com.rogo.final_project.local.datastore.TokenDataStore
 import com.rogo.final_project.network.RestfulApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -47,3 +53,21 @@ import javax.inject.Singleton
 //        retrofit.create(RestfulApi::class.java)
 //
 //}
+
+
+private val Context.datastore by preferencesDataStore(
+    "DATASTORE"
+)
+
+@Module
+@InstallIn(SingletonComponent::class)
+class AppModule {
+    @Singleton
+    @Provides
+    fun provideDataStore(@ApplicationContext context: Context) = context.datastore
+
+
+    @Singleton
+    @Provides
+    fun provideTokenDataStore(dataStore: DataStore<Preferences>) = TokenDataStore(dataStore)
+}

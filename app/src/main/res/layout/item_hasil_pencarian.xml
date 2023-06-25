@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvHasilPencarian"
+        android:layout_width="343dp"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/radius_otp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvJamBerangkat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="07:00"
+                android:textColor="@color/neutral_05"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="14sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvInisial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JKT"
+                android:textSize="12sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/NEUTRAL05"
+                app:layout_constraintTop_toBottomOf="@id/tvJamBerangkat"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvEstimasiWaktu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4h 0m"
+                android:textColor="@color/neutral02"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvJamBerangkat"/>
+
+            <View
+                android:id="@+id/horizontalLine"
+                android:layout_width="69dp"
+                android:layout_height="1dp"
+                android:background="@color/neutral02"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/tvEstimasiWaktu"
+                app:layout_constraintStart_toEndOf="@id/tvJamBerangkat"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivPanah"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/ic_right"
+                android:layout_marginStart="-5dp"
+                app:layout_constraintTop_toBottomOf="@id/tvEstimasiWaktu"
+                app:layout_constraintStart_toEndOf="@id/horizontalLine"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvJamTiba"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11:00"
+                android:textColor="@color/neutral_05"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="14sp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivPanah"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvInisialDua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MLB"
+                android:textSize="12sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/neutral_05"
+                app:layout_constraintTop_toBottomOf="@id/tvJamTiba"
+                app:layout_constraintStart_toEndOf="@id/ivPanah"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDirect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Direct"
+                android:textSize="12sp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/neutral02"
+                app:layout_constraintTop_toBottomOf="@id/ivPanah"
+                app:layout_constraintStart_toEndOf="@id/tvInisial"
+                app:layout_constraintEnd_toStartOf="@id/tvInisialDua"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvHarga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IDR 4.950.000"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/darkblue04"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="27dp"
+                app:layout_constraintStart_toEndOf="@id/tvJamTiba"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <View
+                android:id="@+id/horizontalLine2"
+                android:layout_width="328dp"
+                android:layout_height="1dp"
+                android:background="@color/neutral02"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tvDirect"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/icBunga"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/logo_pesawat"
+                android:layout_marginTop="19dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toBottomOf="@id/horizontalLine2"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvClassPesawat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jet Air - Economy"
+                android:textSize="12sp"
+                android:textColor="@color/neutral_05"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toBottomOf="@id/horizontalLine2"
+                app:layout_constraintStart_toEndOf="@id/icBunga"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivBaggage"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_baggage"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="12dp"
+                app:layout_constraintTop_toBottomOf="@id/tvClassPesawat"
+                app:layout_constraintStart_toEndOf="@id/icBunga"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

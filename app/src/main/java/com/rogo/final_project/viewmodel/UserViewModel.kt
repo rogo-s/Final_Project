@@ -3,6 +3,8 @@ package com.rogo.final_project.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.rogo.final_project.local.datastore.TokenDataStore
 import com.rogo.final_project.network.RestfulApi
 import com.rogo.final_project.view.model.data.otp.DataOtp
 import com.rogo.final_project.view.model.data.otp.DataResendOtp
@@ -17,13 +19,17 @@ import com.rogo.final_project.view.model.data.profile.UpdateProfile
 import com.rogo.final_project.view.model.data.register.DataRegist
 import com.rogo.final_project.view.model.data.register.ResponseDataRegist
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class UserViewModel @Inject constructor(var api: RestfulApi) : ViewModel() {
+class UserViewModel @Inject constructor(
+    var api: RestfulApi,
+    private val dataStore: TokenDataStore
+) : ViewModel() {
 
     //loginViewModel
     private val _usersLogin = MutableLiveData<ResponseDataLogin?>()
@@ -31,7 +37,7 @@ class UserViewModel @Inject constructor(var api: RestfulApi) : ViewModel() {
 
     //RegistViewModel
     private val _usersRegist = MutableLiveData<ResponseDataRegist?>()
-    val usersRegist : MutableLiveData<ResponseDataRegist?> = _usersRegist
+    val usersRegist: MutableLiveData<ResponseDataRegist?> = _usersRegist
 
     //SendOtpViewModel
     private val otp = MutableLiveData<ResponseVerify?>()
@@ -47,22 +53,25 @@ class UserViewModel @Inject constructor(var api: RestfulApi) : ViewModel() {
 
     //updateViewModel
     private val _profileUpdate = MutableLiveData<ResponseProfileUpdate?>()
-    val profileUpdate : MutableLiveData<ResponseProfileUpdate?> = _profileUpdate
+    val profileUpdate: MutableLiveData<ResponseProfileUpdate?> = _profileUpdate
 
     //getProfileViewModel
     private val _usersGetProfile = MutableLiveData<ResponseGetDataProfile?>()
-    val usersGetProfile : MutableLiveData<ResponseGetDataProfile?> = _usersGetProfile
+    val usersGetProfile: MutableLiveData<ResponseGetDataProfile?> = _usersGetProfile
 
     //login
-    fun loginDataUser(data : DataLogin){
+    fun loginDataUser(data: DataLogin) {
         api.loginUser(data).enqueue(object : Callback<ResponseDataLogin> {
             override fun onResponse(
                 call: Call<ResponseDataLogin>,
                 response: Response<ResponseDataLogin>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     _usersLogin.postValue(response.body())
-                }else{
+                    viewModelScope.launch {
+                        dataStore.setToken(response.body()?.accessToken!!)
+                    }
+                } else {
                     _usersLogin.postValue(null)
                 }
             }
@@ -74,15 +83,15 @@ class UserViewModel @Inject constructor(var api: RestfulApi) : ViewModel() {
     }
 
     //regist
-    fun registDataUser(data : DataRegist){
+    fun registDataUser(data: DataRegist) {
         api.registerUser(data).enqueue(object : Callback<ResponseDataRegist> {
             override fun onResponse(
                 call: Call<ResponseDataRegist>,
                 response: Response<ResponseDataRegist>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     _usersRegist.postValue(response.body())
-                }else{
+                } else {
                     _usersRegist.postValue(null)
                 }
             }
@@ -95,20 +104,20 @@ class UserViewModel @Inject constructor(var api: RestfulApi) : ViewModel() {
 
 
     //verifyOtp
-    fun verifyOtpRequest(dataOtp: DataOtp){
+    fun verifyOtpRequest(dataOtp: DataOtp) {
         api.otpUser(dataOtp)
             .enqueue(object : Callback<ResponseVerify> {
                 override fun onResponse(
                     call: Call<ResponseVerify>,
                     response: Response<ResponseVerify>
                 ) {
-                    if (response.isSuccessful){
-                        userOtp.value =response.body()
-                    }
-                    else{
+                    if (response.isSuccessful) {
+                        userOtp.value = response.body()
+                    } else {
                         Log.e("UserViewModel", "Cannot verify data")
                     }
                 }
+
                 override fun onFailure(call: Call<ResponseVerify>, t: Throwable) {
                     Log.e("UserViewModel", "Cannot verify data")
                 }
@@ -116,20 +125,20 @@ class UserViewModel @Inject constructor(var api: RestfulApi) : ViewModel() {
     }
 
     //resendOtp
-    fun resendOtpRequest(dataResendOtp: DataResendOtp){
+    fun resendOtpRequest(dataResendOtp: DataResendOtp) {
         api.resendOtp(dataResendOtp)
             .enqueue(object : Callback<ResponseResendOtp> {
                 override fun onResponse(
                     call: Call<ResponseResendOtp>,
                     response: Response<ResponseResendOtp>
                 ) {
-                    if (response.isSuccessful){
-                        userResendOto.value =response.body()
-                    }
-                    else{
+                    if (response.isSuccessful) {
+                        userResendOto.value = response.body()
+                    } else {
                         Log.e("UserViewModel", "Cannot send data")
                     }
                 }
+
                 override fun onFailure(call: Call<ResponseResendOtp>, t: Throwable) {
                     Log.e("UserViewModel", "Cannot send data")
                 }
@@ -156,34 +165,35 @@ class UserViewModel @Inject constructor(var api: RestfulApi) : ViewModel() {
 //        })
 //    }
 
-    fun updateDataProfile(accessToken : String, data : UpdateProfile){
-        api.updateProfile("Bearer $accessToken", data).enqueue(object : Callback<ResponseProfileUpdate> {
-            override fun onResponse(
-                call: Call<ResponseProfileUpdate>,
-                response: Response<ResponseProfileUpdate>
-            ) {
-                if(response.isSuccessful){
-                    _profileUpdate.postValue(response.body())
-                }else{
+    fun updateDataProfile(accessToken: String, data: UpdateProfile) {
+        api.updateProfile("Bearer $accessToken", data)
+            .enqueue(object : Callback<ResponseProfileUpdate> {
+                override fun onResponse(
+                    call: Call<ResponseProfileUpdate>,
+                    response: Response<ResponseProfileUpdate>
+                ) {
+                    if (response.isSuccessful) {
+                        _profileUpdate.postValue(response.body())
+                    } else {
+                        _profileUpdate.postValue(null)
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseProfileUpdate>, t: Throwable) {
                     _profileUpdate.postValue(null)
                 }
-            }
-
-            override fun onFailure(call: Call<ResponseProfileUpdate>, t: Throwable) {
-                _profileUpdate.postValue(null)
-            }
-        })
+            })
     }
 
-    fun getDataProfile(accessToken : String){
+    fun getDataProfile(accessToken: String) {
         api.dataProfile("Bearer $accessToken").enqueue(object : Callback<ResponseGetDataProfile> {
             override fun onResponse(
                 call: Call<ResponseGetDataProfile>,
                 response: Response<ResponseGetDataProfile>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     _usersGetProfile.postValue(response.body())
-                }else{
+                } else {
                     _usersGetProfile.postValue(null)
                 }
             }
