@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_app"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/homeFragment2">
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.rogo.final_project.view.fragment.SplashFragment"
+        android:name="com.rogo.final_project.view.fragment.home.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.rogo.final_project.view.fragment.LoginFragment"
+        android:name="com.rogo.final_project.view.fragment.Auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.rogo.final_project.view.fragment.RegisterFragment"
+        android:name="com.rogo.final_project.view.fragment.Auth.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/sendOtpFragment"
-        android:name="com.rogo.final_project.view.fragment.SendOtpFragment"
+        android:name="com.rogo.final_project.view.fragment.Auth.SendOtpFragment"
         android:label="fragment_send_otp"
         tools:layout="@layout/fragment_send_otp" >
         <action
@@ -52,12 +52,12 @@
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
-        android:name="com.rogo.final_project.view.fragment.ResetPasswordFragment"
+        android:name="com.rogo.final_project.view.fragment.Auth.ResetPasswordFragment"
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" />
     <fragment
         android:id="@+id/homeFragment2"
-        android:name="com.rogo.final_project.view.fragment.HomeFragment"
+        android:name="com.rogo.final_project.view.fragment.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -69,33 +69,42 @@
         <action
             android:id="@+id/action_homeFragment2_to_historyNonLoginFragment2"
             app:destination="@id/historyNonLoginFragment2" />
-        <action
-            android:id="@+id/action_homeFragment2_to_fragmentAkunLogin"
-            app:destination="@id/fragmentAkunLogin" />
-        <action
-            android:id="@+id/action_homeFragment2_to_editProfileFragment2"
-            app:destination="@id/editProfileFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_homeFragment2_to_fragmentAkunLogin"-->
+<!--            app:destination="@id/fragmentAkunLogin" />-->
         <action
             android:id="@+id/action_homeFragment2_to_hasilPencarianFragment"
             app:destination="@id/hasilPencarianFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_setPenempunganFragment"
+            app:destination="@id/setPenempunganFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_pencarianFromFragment"
+            app:destination="@id/pencarianFromFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_pencarianToFragment"
+            app:destination="@id/pencarianToFragment" />
     </fragment>
     <fragment
         android:id="@+id/notifFragment2"
-        android:name="com.rogo.final_project.view.fragment.NotifFragment"
+        android:name="com.rogo.final_project.view.fragment.BottonNav.NotifFragment"
         android:label="fragment_notif"
         tools:layout="@layout/fragment_notif" />
     <fragment
         android:id="@+id/akunNonLoginFragment2"
-        android:name="com.rogo.final_project.view.fragment.AkunNonLoginFragment"
+        android:name="com.rogo.final_project.view.fragment.BottonNav.AkunNonLoginFragment"
         android:label="fragment_akun_non_login"
         tools:layout="@layout/fragment_akun_non_login" >
         <action
             android:id="@+id/action_akunNonLoginFragment2_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_akunNonLoginFragment2_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyNonLoginFragment2"
-        android:name="com.rogo.final_project.view.fragment.HistoryNonLoginFragment"
+        android:name="com.rogo.final_project.view.fragment.BottonNav.HistoryNonLoginFragment"
         android:label="fragment_history_non_login"
         tools:layout="@layout/fragment_history_non_login" >
         <action
@@ -107,25 +116,60 @@
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.rogo.final_project.view.fragment.EditProfileFragment"
+        android:name="com.rogo.final_project.view.fragment.Auth.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" >
-        <action
-            android:id="@+id/action_editProfileFragment_to_fragmentAkunLogin"
-            app:destination="@id/fragmentAkunLogin" />
+<!--        <action-->
+<!--            android:id="@+id/action_editProfileFragment_to_fragmentAkunLogin"-->
+<!--            app:destination="@id/fragmentAkunLogin" />-->
     </fragment>
-    <fragment
-        android:id="@+id/fragmentAkunLogin"
-        android:name="com.rogo.final_project.view.fragment.FragmentAkunLogin"
-        android:label="fragment_akun_login"
-        tools:layout="@layout/fragment_akun_login" >
-        <action
-            android:id="@+id/action_fragmentAkunLogin_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentAkunLogin"-->
+<!--        android:name="com.rogo.final_project.view.fragment.FragmentAkunLogin"-->
+<!--        android:label="fragment_akun_login"-->
+<!--        tools:layout="@layout/fragment_akun_login" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentAkunLogin_to_editProfileFragment"-->
+<!--            app:destination="@id/editProfileFragment" />-->
+<!--    </fragment>-->
     <fragment
         android:id="@+id/hasilPencarianFragment"
-        android:name="com.rogo.final_project.view.fragment.HasilPencarianFragment"
+        android:name="com.rogo.final_project.view.fragment.searching.HasilPencarianFragment"
         android:label="fragment_hasil_pencarian"
-        tools:layout="@layout/fragment_hasil_pencarian" />
+        tools:layout="@layout/fragment_hasil_pencarian" >
+        <action
+            android:id="@+id/action_hasilPencarianFragment_to_detailNonLoginFragment5"
+            app:destination="@id/detailNonLoginFragment5" />
+    </fragment>
+    <dialog
+        android:id="@+id/setPenempunganFragment"
+        android:name="com.rogo.final_project.view.fragment.home.SetPenempunganFragment"
+        android:label="fragment_set_penempungan"
+        tools:layout="@layout/fragment_set_penempungan" >
+        <action
+            android:id="@+id/action_setPenempunganFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </dialog>
+    <fragment
+        android:id="@+id/detailNonLoginFragment5"
+        android:name="com.rogo.final_project.view.fragment.searching.DetailNonLoginFragment"
+        android:label="DetailNonLoginFragment" />
+    <fragment
+        android:id="@+id/pencarianFromFragment"
+        android:name="com.rogo.final_project.view.fragment.searching.PencarianFromFragment"
+        android:label="fragment_pencarian_from"
+        tools:layout="@layout/fragment_pencarian_from" >
+        <action
+            android:id="@+id/action_pencarianFromFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/pencarianToFragment"
+        android:name="com.rogo.final_project.view.fragment.searching.PencarianToFragment"
+        android:label="fragment_pencarian_to"
+        tools:layout="@layout/fragment_pencarian_to" >
+        <action
+            android:id="@+id/action_pencarianToFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
 </navigation>

@@ -5,7 +5,7 @@
     android:padding="10dp"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.NotifFragment">
+    tools:context=".view.fragment.BottonNav.NotifFragment">
 
     <TextView
         android:id="@+id/tv_notif"

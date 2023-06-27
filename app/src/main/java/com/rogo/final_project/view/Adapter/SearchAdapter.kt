@@ -1,7 +1,9 @@
 package com.rogo.final_project.view.Adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +16,7 @@ import com.rogo.final_project.view.model.data.ticket.TicketsItem
 
 class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.ItemViewHolder>() {
 
+//    val onSelect:(TicketsItem) -> Unit
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TicketsItem>() {
 
         override fun areItemsTheSame(oldItem: TicketsItem, newItem: TicketsItem): Boolean {
@@ -39,6 +42,13 @@ class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.ItemViewHolder>() {
                 tvInisial.text = item.flight?.departureCity
                 tvInisialDua.text = item.flight?.arrivalCity
                 tvHarga.text = item.price.toString()
+
+                binding.cvHasilPencarian.setOnClickListener {
+                    val id = item.id
+                    val bundle = Bundle()
+                    bundle.putInt("id", id!!)
+                    it.findNavController().navigate(R.id.action_hasilPencarianFragment_to_detailNonLoginFragment5, bundle)
+                }
             }
         }
     }
@@ -57,5 +67,6 @@ class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.ItemViewHolder>() {
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = differ.currentList[position]
         holder.bind(item)
+
     }
 }

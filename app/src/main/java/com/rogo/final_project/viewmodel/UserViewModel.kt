@@ -68,9 +68,9 @@ class UserViewModel @Inject constructor(
             ) {
                 if (response.isSuccessful) {
                     _usersLogin.postValue(response.body())
-                    viewModelScope.launch {
-                        dataStore.setToken(response.body()?.accessToken!!)
-                    }
+//                    viewModelScope.launch {
+//                        dataStore.setToken(response.body()?.accessToken!!)
+//                    }
                 } else {
                     _usersLogin.postValue(null)
                 }

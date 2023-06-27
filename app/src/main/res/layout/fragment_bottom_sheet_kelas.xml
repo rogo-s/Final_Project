@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.fragment.BottomSheetKelasFragment">
+    tools:context=".view.fragment.home.BottomSheetKelasFragment">
         <ImageView
         android:id="@+id/btn_close"
         android:layout_width="30dp"

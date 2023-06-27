@@ -1,26 +1,24 @@
 package com.rogo.final_project.viewmodel
 
-import android.content.Context
-import androidx.datastore.preferences.preferencesDataStore
+import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.rogo.final_project.local.datastore.TokenDataStore
 import com.rogo.final_project.network.RestfulApi
 import com.rogo.final_project.view.model.data.flight.GetFlightResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import javax.inject.Inject
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val api: RestfulApi,
-    private val dataStore: TokenDataStore
+    private val dataStore: TokenDataStore,
+    private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
 
 
@@ -44,5 +42,138 @@ class HomeViewModel @Inject constructor(
 
         })
 
+    }
+
+    fun savePenumpangPreferences(dewasa: Int,anak: Int,bayi: Int){
+        val editor = sharedPreferences.edit()
+        editor.putInt("dewasa",dewasa)
+        editor.putInt("anak",anak)
+        editor.putInt("bayi",bayi)
+        editor.apply()
+    }
+
+    fun getPenumpangDewasa():Int{
+        return sharedPreferences.getInt("dewasa",1)
+    }
+
+    fun getPenumpangAnak():Int{
+        return sharedPreferences.getInt("anak",0)
+    }
+
+    fun getPenumpangBayi():Int{
+        return sharedPreferences.getInt("bayi",0)
+    }
+
+
+    fun saveDatePref(date:String){
+        val editor = sharedPreferences.edit()
+        editor.putString("date", date)
+        editor.apply()
+    }
+
+    fun getArrivedDate(): String? {
+        val nameMonth = ArrayList<String>()
+        nameMonth.add("Januari")
+        nameMonth.add("Februari")
+        nameMonth.add("Maret")
+        nameMonth.add("April")
+        nameMonth.add("Mei")
+        nameMonth.add("Juni")
+        nameMonth.add("Juli")
+        nameMonth.add("Agustus")
+        nameMonth.add("September")
+        nameMonth.add("Oktober")
+        nameMonth.add("November")
+        nameMonth.add("Desember")
+
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val bulan = nameMonth[month]
+//        val tanggal = "2023-5-27"
+        val defaultTanggal = "$year-${month+1}-$day"
+        return sharedPreferences.getString("date",defaultTanggal)
+    }
+
+    fun getDepartureDate():String?{
+        val nameMonth = ArrayList<String>()
+        nameMonth.add("Januari")
+        nameMonth.add("Februari")
+        nameMonth.add("Maret")
+        nameMonth.add("April")
+        nameMonth.add("Mei")
+        nameMonth.add("Juni")
+        nameMonth.add("Juli")
+        nameMonth.add("Agustus")
+        nameMonth.add("September")
+        nameMonth.add("Oktober")
+        nameMonth.add("November")
+        nameMonth.add("Desember")
+
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val bulan = nameMonth[month]
+//        val tanggal = "2023-5-26"
+        val defaultTanggal = "$year-${month+1}-$day"
+        return sharedPreferences.getString("departure",defaultTanggal)
+    }
+
+    fun saveselected(isSelected: Boolean){
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("selected", isSelected)
+    }
+
+    fun getCheckedSwitch() : Boolean{
+        return  sharedPreferences.getBoolean("selected", true)
+    }
+
+    fun saveDepartureDate(date: String){
+        val editor = sharedPreferences.edit()
+        editor.putString("departure",date)
+        editor.apply()
+    }
+
+    fun getCityFrom():String?{
+        return sharedPreferences.getString("keyFrom"," ")
+    }
+
+    fun getIdDep():Int?{
+        return sharedPreferences.getInt("idDep",0)
+    }
+
+    fun getCityTo():String?{
+        return sharedPreferences.getString("keyTo"," ")
+    }
+
+    fun getorder():String?{
+        return sharedPreferences.getString("order","price")
+    }
+
+    fun saveCityFrom(city:String){
+        val editor = sharedPreferences.edit()
+        editor.putString("keyFrom",city)
+        editor.apply()
+    }
+
+    fun saveCityTo(city:String){
+        val editor = sharedPreferences.edit()
+        editor.putString("keyTo",city)
+        editor.apply()
+    }
+
+
+    fun saveIdDeparture(idDep:Int){
+        val editor = sharedPreferences.edit()
+        editor.putInt("idDep",idDep)
+        editor.apply()
+    }
+
+    fun saveIdReturn(idReturn:Int){
+        val editor = sharedPreferences.edit()
+        editor.putInt("idReturn",idReturn)
+        editor.apply()
     }
 }
