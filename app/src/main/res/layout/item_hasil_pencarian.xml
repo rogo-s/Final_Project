@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/hasil_pencarian"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,8 +8,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvHasilPencarian"
-        android:layout_width="343dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvEstimasiWaktu"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="4h 0m"
                 android:textColor="@color/neutral02"
@@ -156,7 +156,7 @@
                 android:id="@+id/tvClassPesawat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jet Air - Economy"
+                android:text="Jet Air"
                 android:textSize="12sp"
                 android:textColor="@color/neutral_05"
                 android:fontFamily="@font/poppins_medium"
@@ -164,6 +164,19 @@
                 android:layout_marginStart="8dp"
                 app:layout_constraintTop_toBottomOf="@id/horizontalLine2"
                 app:layout_constraintStart_toEndOf="@id/icBunga"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvClassSeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text=" - Economy"
+                android:textColor="@color/neutral_05"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/tvClassPesawat"
+                app:layout_constraintTop_toBottomOf="@id/horizontalLine2" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivBaggage"

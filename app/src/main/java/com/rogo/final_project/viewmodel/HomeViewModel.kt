@@ -1,11 +1,16 @@
 package com.rogo.final_project.viewmodel
 
 import android.content.SharedPreferences
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.rogo.final_project.local.datastore.TokenDataStore
 import com.rogo.final_project.network.RestfulApi
 import com.rogo.final_project.view.model.data.flight.GetFlightResponse
+import com.rogo.final_project.view.model.data.search.Data
+import com.rogo.final_project.view.model.data.search.Flight
+import com.rogo.final_project.view.model.data.search.SearchTiketsResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import javax.inject.Inject
@@ -13,6 +18,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.List
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -152,18 +158,6 @@ class HomeViewModel @Inject constructor(
         return sharedPreferences.getString("order","price")
     }
 
-    fun saveCityFrom(city:String){
-        val editor = sharedPreferences.edit()
-        editor.putString("keyFrom",city)
-        editor.apply()
-    }
-
-    fun saveCityTo(city:String){
-        val editor = sharedPreferences.edit()
-        editor.putString("keyTo",city)
-        editor.apply()
-    }
-
 
     fun saveIdDeparture(idDep:Int){
         val editor = sharedPreferences.edit()
@@ -175,5 +169,95 @@ class HomeViewModel @Inject constructor(
         val editor = sharedPreferences.edit()
         editor.putInt("idReturn",idReturn)
         editor.apply()
+    }
+
+    private val _searching = MutableLiveData<SearchTiketsResponse>()
+    val searching: LiveData<SearchTiketsResponse> = _searching
+
+    fun callGetSearchAirport(departureCity: String) {
+        api.getdestinationsfrom(departureCity).enqueue(object : Callback<SearchTiketsResponse> {
+            override fun onResponse(
+                call: Call<SearchTiketsResponse>,
+                response: Response<SearchTiketsResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    if (data != null) {
+                        _searching.postValue(response.body())
+                    }
+                } else {
+                    Log.e("Error : ", "onFailure : ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<SearchTiketsResponse>, t: Throwable) {
+                Log.e("Error : ", "onFailure : ${t.message}")
+            }
+
+        })
+    }
+
+    fun saveCityFrom(departureCity:String){
+        val editor = sharedPreferences.edit()
+        editor.putString("keyFrom",departureCity)
+        editor.apply()
+    }
+
+    private val _searchingTo = MutableLiveData<SearchTiketsResponse>()
+    val searchingTo: LiveData<SearchTiketsResponse> = _searchingTo
+
+    fun callGetSearchTo(arrivalCity: String) {
+        api.getdestinationsto(arrivalCity).enqueue(object : Callback<SearchTiketsResponse> {
+            override fun onResponse(
+                call: Call<SearchTiketsResponse>,
+                response: Response<SearchTiketsResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    if (data != null) {
+                        _searchingTo.postValue(response.body())
+                    }
+                } else {
+                    Log.e("Error : ", "onFailure : ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<SearchTiketsResponse>, t: Throwable) {
+                Log.e("Error : ", "onFailure : ${t.message}")
+            }
+
+        })
+    }
+
+    fun saveCityTo(arrivalCity:String){
+        val editor = sharedPreferences.edit()
+        editor.putString("keyTo",arrivalCity)
+        editor.apply()
+    }
+
+    val _searchallticket : MutableLiveData<List<Data>> = MutableLiveData()
+    val livedatasearchallticket : LiveData<List<Data>> = _searchallticket
+
+    fun searchallticket(departureCity:String,arrivalCity:String,departureDate:String,arrivedDate:String){
+        api.getallticket(departureCity, arrivalCity, departureDate, arrivedDate).enqueue(object : Callback<SearchTiketsResponse>{
+            override fun onResponse(
+                call: Call<SearchTiketsResponse>,
+                response: Response<SearchTiketsResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    if (data != null) {
+                        _searchallticket.value = response.body()!!.data
+                    }
+                } else {
+                    Log.e("Error : ", "onFailure : ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<SearchTiketsResponse>, t: Throwable) {
+                Log.e("HomeViewModel", "Cannot send data1")
+            }
+
+        })
     }
 }

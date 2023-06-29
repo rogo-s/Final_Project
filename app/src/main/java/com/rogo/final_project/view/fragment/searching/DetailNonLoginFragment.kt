@@ -34,40 +34,68 @@ class DetailNonLoginFragment : Fragment() {
         DetailVm.getdetailticket(id!!)
 
         DetailVm.livedetailticket.observe(viewLifecycleOwner) {detail->
-            val getdetail = detail.ticket.flight
+            binding.apply {
+                val departureTime = detail!!.ticket.flight.departureTime
+                val arrivalTime = detail.ticket.flight.arrivalTime
+                val getPrice = detail.ticket.price
+                val depatureAirport = detail.ticket.flight.departureAirport
+                val arrivalAirport = detail.ticket.flight.arrivalAirport
+                val baggage = detail.ticket.additionalInformation
+                val flightCode = detail.ticket.flight.flightCode
+                val dateDepature = detail.ticket.flight.departureDate
+                val arrivalDate = detail.ticket.flight.arrivalDate
+                val depatureCity = detail.ticket.flight.departureCity
+                val arrivalCity = detail.ticket.flight.arrivalCity
+                val classSeat = detail.ticket.classSeat
+
+                tvTimeArrive.text = arrivalTime
+                tvTimeDeparture.text = departureTime
+                tvPriceTicket.text = getPrice.toString()
+                tvDepartureAirport.text = depatureAirport
+                tvArriveAirport.text = arrivalAirport
+                tvFlightAsal.text = depatureCity
+                tvFlightDestination.text = arrivalCity
+                tvDateDeparture.text = dateDepature
+                tvDateArrive.text = arrivalDate
+                nomorseri.text = flightCode
+                cabinbaggage.text = baggage
+                KelasSeat.text = classSeat
+
+            }
+//            val getdetail = detail.ticket.flight
 //            val id = getdetail.id.toString()
 //            val bundle = Bundle()
 //            bundle.getString("id", id)
-            if (getdetail != null){
-                binding.layoutDetail.visibility = View.VISIBLE
-                binding.totalTicket.visibility = View.VISIBLE
-                Log.d("DetailPenerbangan","Berhasil dong")
-                binding.apply {
-                    nomorseri.visibility = View.GONE
-                    val idpenerbangan = detail.ticket.id
-                    idFlight.text = idpenerbangan.toString()
-                    tvDepartureAirport.text = getdetail.departureAirport
-                    tvDateDeparture.text = getdetail.departureDate
-                    tvTimeDeparture.text = getdetail.departureTime
-                    tvFlightAsal.text = getdetail.departureCity
-                    tvFlightDestination.text = getdetail.arrivalCity
-//                    baggage.text = getdetail.plane.baggageMaxCapacity.toString()
-//                    cabinbaggage.text = getdetail
-                    tvTimeArrive.text = getdetail.arrivalTime
-                    tvDateArrive.text = getdetail.arrivalDate
-                    tvArriveAirport.text = getdetail.arrivalAirport
-//                    val price = Utill.getPriceIdFormat(getdetail.provTotalPrice)
-//                    tvPriceTicket.text = "$price"
-
-//                    binding.btnSelectFlight.setOnClickListener {
-//                        findNavController().navigate(R.id.action_detailNonLoginFragment_to_checkoutBioPemesanFragment)
-//                    }
-
-
-                }
-            }else {
-                Log.e("DetailPenerbangan", "detailTicket is null")
-            }
+//            if (getdetail != null){
+//                binding.layoutDetail.visibility = View.VISIBLE
+//                binding.totalTicket.visibility = View.VISIBLE
+//                Log.d("DetailPenerbangan","Berhasil dong")
+//                binding.apply {
+//                    nomorseri.visibility = View.GONE
+//                    val idpenerbangan = detail.ticket
+//                    idFlight.text = idpenerbangan.toString()
+//                    tvDepartureAirport.text = getdetail.departureAirport
+//                    tvDateDeparture.text = getdetail.departureDate
+//                    tvTimeDeparture.text = getdetail.departureTime
+//                    tvFlightAsal.text = getdetail.departureCity
+//                    tvFlightDestination.text = getdetail.arrivalCity
+////                    baggage.text = getdetail.plane.baggageMaxCapacity.toString()
+////                    cabinbaggage.text = getdetail
+//                    tvTimeArrive.text = getdetail.arrivalTime
+//                    tvDateArrive.text = getdetail.arrivalDate
+//                    tvArriveAirport.text = getdetail.arrivalAirport
+////                    val price = Utill.getPriceIdFormat(getdetail.provTotalPrice)
+////                    tvPriceTicket.text = "$price"
+//
+////                    binding.btnSelectFlight.setOnClickListener {
+////                        findNavController().navigate(R.id.action_detailNonLoginFragment_to_checkoutBioPemesanFragment)
+////                    }
+//
+//
+//                }
+//            }else {
+//                Log.e("DetailPenerbangan", "detailTicket is null")
+//            }
         }
     }
 

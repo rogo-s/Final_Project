@@ -79,11 +79,16 @@ interface RestfulApi {
         @Query("arrivalCity") arrivalCity   :String,
     ): Call<SearchTiketsResponse>
 
-    @GET("tikets")
+    @GET("search")
     fun getallticket(
-        @Query("departureAirport") departureAirport:String,
-        @Query("arrivalAirport") arrivalAirport:String,
+        @Query("departureCity") departureCity:String,
+        @Query("arrivalCity") arrivalCity:String,
         @Query("departureDate") departureDate:String,
         @Query("arrivalDate") arrivedDate:String
+    ) : Call<SearchTiketsResponse>
+
+    @GET("airports")
+    fun getAllCity(
+        @Query ("departureCity") City:String
     ) : Call<GetTicketResponse>
 }

@@ -83,7 +83,7 @@ class SearchViewModel @Inject constructor(private val api: RestfulApi, private v
                 if (response.isSuccessful) {
                     val data = response.body()
                     if (data != null) {
-                        _searching.postValue(response.body())
+                        _searchingTo.postValue(response.body())
                     }
                 } else {
                     Log.e("Error : ", "onFailure : ${response.message()}")
@@ -99,28 +99,30 @@ class SearchViewModel @Inject constructor(private val api: RestfulApi, private v
 
     fun saveCityTo(arrivalCity:String){
         val editor = sharedPreferences.edit()
-        editor.putString("keyFrom",arrivalCity)
+        editor.putString("keyTo",arrivalCity)
         editor.apply()
     }
 
-    val _searchallticket : MutableLiveData<GetTicketResponse> = MutableLiveData()
-    val livedatasearchallticket : LiveData<GetTicketResponse> = _searchallticket
+    val _searchallticket : MutableLiveData<SearchTiketsResponse> = MutableLiveData()
+    val livedatasearchallticket : LiveData<SearchTiketsResponse> = _searchallticket
 
-    fun searchallticket(originAirport:String,destinationAirport:String,departureDate:String,arrivedDate:String){
-        api.getallticket(originAirport, destinationAirport, departureDate, arrivedDate).enqueue(object : Callback<GetTicketResponse>{
+    fun searchallticket(departureCity:String,arrivalCity:String,departureDate:String,arrivedDate:String){
+        api.getallticket(departureCity, arrivalCity, departureDate, arrivedDate).enqueue(object : Callback<SearchTiketsResponse>{
             override fun onResponse(
-                call: Call<GetTicketResponse>,
-                response: Response<GetTicketResponse>
+                call: Call<SearchTiketsResponse>,
+                response: Response<SearchTiketsResponse>
             ) {
-                if (response.isSuccessful){
-                    _searchallticket.postValue(response.body())
-                }
-                else{
-                    Log.e("HomeViewModel", "Cannot send data")
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    if (data != null) {
+                        _searchallticket.postValue(response.body())
+                    }
+                } else {
+                    Log.e("Error : ", "onFailure : ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<GetTicketResponse>, t: Throwable) {
+            override fun onFailure(call: Call<SearchTiketsResponse>, t: Throwable) {
                 Log.e("HomeViewModel", "Cannot send data1")
             }
 

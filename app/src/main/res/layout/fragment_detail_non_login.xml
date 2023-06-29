@@ -93,16 +93,16 @@
                 android:textSize="16sp"
                 android:lineHeight="24dp"
                 android:textColor="#222222"/>
-            <TextView
-                android:id="@+id/idFlight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:text="id"
-                android:fontFamily="@font/poppins_bold"
-                android:textSize="16sp"
-                android:lineHeight="24dp"
-                android:textColor="#222222"/>
+<!--            <TextView-->
+<!--                android:id="@+id/idFlight"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="100dp"-->
+<!--                android:text="id"-->
+<!--                android:fontFamily="@font/poppins_bold"-->
+<!--                android:textSize="16sp"-->
+<!--                android:lineHeight="24dp"-->
+<!--                android:textColor="#222222"/>-->
         </LinearLayout>
 
 
@@ -214,6 +214,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/KelasSeat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
@@ -242,15 +243,6 @@
                         android:textColor="#000000"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/baggage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:lineHeight="20dp"
-                        android:text="Baggage 20 kg"
-                        android:textColor="#000000"
-                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/cabinbaggage"

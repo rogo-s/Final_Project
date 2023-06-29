@@ -18,12 +18,13 @@ import com.rogo.final_project.view.Adapter.HistorySeachAdapter
 import com.rogo.final_project.view.Adapter.SearchFromAdapter
 import com.rogo.final_project.view.Adapter.SearchToAdapter
 import com.rogo.final_project.view.model.data.search.Flight
+import com.rogo.final_project.viewmodel.HomeViewModel
 import com.rogo.final_project.viewmodel.SearchViewModel
 
 
 class PencarianToFragment : Fragment() {
     private lateinit var binding : FragmentPencarianToBinding
-    private lateinit var homeVM: SearchViewModel
+    private lateinit var homeVM: HomeViewModel
     private lateinit var sharedPreferences: SharedPreferences
 
     private val PREF_NAME = "SearchHistory"
@@ -40,7 +41,7 @@ class PencarianToFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeVM = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
+        homeVM = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
 
         binding.ivSearch.setOnClickListener {
             val kotaSearch = binding.etSearch.text.toString()
@@ -62,7 +63,7 @@ class PencarianToFragment : Fragment() {
         val searchText = binding.etSearch.text.toString().trim()
         if (searchText.isNotEmpty()) {
             homeVM.callGetSearchTo(arrivalCity)
-            homeVM.searching.observe(viewLifecycleOwner) { searchResults ->
+            homeVM.searchingTo.observe(viewLifecycleOwner) { searchResults ->
 //                val filteredResults = searchResults?.filter { Flight ->
 //                    Flight.departureCity.contains(searchText, ignoreCase = true)
 //

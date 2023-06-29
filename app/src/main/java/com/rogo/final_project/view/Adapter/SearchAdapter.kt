@@ -43,12 +43,12 @@ class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.ItemViewHolder>() {
                 tvInisialDua.text = item.flight?.arrivalCity
                 tvHarga.text = item.price.toString()
 
-                binding.cvHasilPencarian.setOnClickListener {
-                    val id = item.id
-                    val bundle = Bundle()
-                    bundle.putInt("id", id!!)
-                    it.findNavController().navigate(R.id.action_hasilPencarianFragment_to_detailNonLoginFragment5, bundle)
-                }
+//                binding.cvHasilPencarian.setOnClickListener {
+//                    val id = item.id
+//                    val bundle = Bundle()
+//                    bundle.putInt("id", id!!)
+//                    it.findNavController().navigate(R.id.action_hasilPencarianFragment_to_detailNonLoginFragment5, bundle)
+//                }
             }
         }
     }

@@ -21,11 +21,54 @@
             android:background="@color/darkblue05"
             app:titleTextColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             app:layout_anchor="@+id/constraintLayout"
             app:layout_anchorGravity="center"
             app:navigationIcon="@drawable/ic_back"
-            app:title="JKT > MLB - 2 Penumpang - Economy" />
+             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/toolbarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="JKT > MLB - 2 Penumpang - Economy"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Departure"
+                    android:textColor="@color/white" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputdate"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="5dp"
+                    android:minHeight="48dp"
+                    app:boxBackgroundMode="outline"
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false">
+
+                    <TextView
+                        android:id="@+id/etDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Masukan Tanggal"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
 <!--    <LinearLayout-->

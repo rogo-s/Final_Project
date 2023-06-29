@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        homeViewModel.getFlights()
+//        homeViewModel.getFlights()
 
         val dateNowReturn = homeViewModel.getArrivedDate()
         val dateNowDeparture = homeViewModel.getDepartureDate()
@@ -111,7 +111,7 @@ class HomeFragment : Fragment() {
         binding.btnSwitch.isChecked = getCheck
 
         //search ke halaman pencarian kota/negara
-        binding.tvJakarta.setOnClickListener {
+        binding.tvFrom.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment2_to_pencarianFromFragment)
         }
         pref = requireContext().getSharedPreferences("MyPrefsFrom", Context.MODE_PRIVATE)
@@ -119,7 +119,7 @@ class HomeFragment : Fragment() {
         binding.tvJakarta.text = selectedDestination
 
 
-        binding.tvMelbourne.setOnClickListener {
+        binding.tvTo.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment2_to_pencarianToFragment)
         }
         val prefTo = requireContext().getSharedPreferences("MyPrefsTo", Context.MODE_PRIVATE)

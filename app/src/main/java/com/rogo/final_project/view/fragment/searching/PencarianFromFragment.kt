@@ -16,11 +16,12 @@ import com.rogo.final_project.databinding.FragmentPencarianFromBinding
 import com.rogo.final_project.view.Adapter.HistorySeachAdapter
 import com.rogo.final_project.view.Adapter.SearchFromAdapter
 import com.rogo.final_project.view.model.data.search.Flight
+import com.rogo.final_project.viewmodel.HomeViewModel
 import com.rogo.final_project.viewmodel.SearchViewModel
 
 class PencarianFromFragment : Fragment() {
     private lateinit var binding : FragmentPencarianFromBinding
-    private lateinit var homeVM: SearchViewModel
+    private lateinit var homeVM: HomeViewModel
     private lateinit var sharedPreferences: SharedPreferences
 
     private val PREF_NAME = "SearchHistory"
@@ -37,7 +38,7 @@ class PencarianFromFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeVM = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
+        homeVM = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
 
         binding.ivSearch.setOnClickListener {
             val kotaSearch = binding.etSearch.text.toString()
