@@ -10,10 +10,12 @@ import com.rogo.final_project.view.model.data.otp.ResponseVerify
 import com.rogo.final_project.view.model.data.login.DataLogin
 import com.rogo.final_project.view.model.data.login.ResponseDataLogin
 import com.rogo.final_project.view.model.data.profile.ResponseGetDataProfile
-import com.rogo.final_project.view.model.data.profile.ResponseProfileUpdate
 import com.rogo.final_project.view.model.data.profile.UpdateProfile
 import com.rogo.final_project.view.model.data.register.DataRegist
 import com.rogo.final_project.view.model.data.register.ResponseDataRegist
+import com.rogo.final_project.view.model.data.repass.ForgotPass
+import com.rogo.final_project.view.model.data.repass.ResetPass
+import com.rogo.final_project.view.model.data.repass.ResponseForgotPass
 import com.rogo.final_project.view.model.data.search.SearchTiketsResponse
 import com.rogo.final_project.view.model.data.ticket.GetTicketResponse
 import retrofit2.Call
@@ -49,12 +51,22 @@ interface RestfulApi {
     fun updateProfile(
         @Header("Authorization") accessToken: String,
         @Body data: UpdateProfile
-    ): Call<ResponseProfileUpdate>
+    ): Call<ResponseDataRegist>
 
     @GET("profile")
     fun dataProfile(
         @Header("Authorization") accessToken: String
     ): Call<ResponseGetDataProfile>
+
+    @PUT("forgot-password")
+    fun forgotPass(
+        @Body data: ForgotPass
+    ): Call<ResponseForgotPass>
+
+    @PUT("reset-password")
+    fun resetPass(
+        @Body data: ResetPass
+    ): Call<List<DataRegist>>
 
     @GET("tickets")
     fun getTicket(): Call<GetTicketResponse>

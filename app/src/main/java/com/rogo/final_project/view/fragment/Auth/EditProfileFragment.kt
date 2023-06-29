@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.rogo.final_project.databinding.FragmentEditProfileBinding
 import com.rogo.final_project.view.model.data.profile.UpdateProfile
 import com.rogo.final_project.viewmodel.UserViewModel
@@ -18,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class EditProfileFragment : Fragment() {
     lateinit var binding : FragmentEditProfileBinding
     private lateinit var sharedPref : SharedPreferences
-    private val profileViewModel : UserViewModel by viewModels()
+    lateinit var profileViewModel : UserViewModel
 //    private lateinit var  gettoken : TokenDataStore
 
     override fun onCreateView(
@@ -26,36 +27,39 @@ class EditProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentEditProfileBinding.inflate(inflater, container, false)
+        binding = FragmentEditProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        profileViewModel =  ViewModelProvider(this).get(UserViewModel::class.java)
+
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
-        val getName = sharedPref.getString("name", "")
-        val getPhone = sharedPref.getString("telephone", "")
-        binding.etNameProf.setText(getName)
-        binding.etPhoneProf.setText(getPhone)
+//        val getName = sharedPref.getString("name", "")
+//        val getPhone = sharedPref.getString("telephone", "")
+//        binding.etNameProf.setText(getName)
+//        binding.etPhoneProf.setText(getPhone)
 
-        getdataProfile()
+//        getdataProfile()
 
         binding.btnUpdate.setOnClickListener{
             updateProfile()
         }
     }
 
-    fun getdataProfile(){
-        val accessToken = sharedPref.getString("token", "").toString()
-
-        profileViewModel.getDataProfile(accessToken)
-        profileViewModel.usersGetProfile.observe(viewLifecycleOwner){
-            binding.etNameProf.setText(it!!.data.name)
-            binding.etPhoneProf.setText(it!!.data.phoneNumber)
-        }
-    }
+//    fun getdataProfile(){
+//        sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
+//        val accessToken = sharedPref.getString("token", "").toString()
+//        profileViewModel.getDataProfile(accessToken)
+//        profileViewModel.usersGetProfile.observe(viewLifecycleOwner) {
+//            binding.etEmailProf.setText(it!!.data.email)
+//            binding.etNameProf.setText(it!!.data.name)
+//            binding.etPhoneProf.setText(it!!.data.phoneNumber)
+//        }
+//    }
 
     fun updateProfile(){
         val name = binding.etNameProf.text.toString()
@@ -66,6 +70,10 @@ class EditProfileFragment : Fragment() {
         profileViewModel.profileUpdate.observe(viewLifecycleOwner){
             if (it != null) {
                 Toast.makeText(requireContext(), "Update Profile Berhasil", Toast.LENGTH_SHORT).show()
+                val sPref = sharedPref.edit()
+                sPref.putString("name", name)
+                sPref.putString("telephone", phoneNumber)
+                sPref.apply()
             } else {
                 Toast.makeText(requireContext(), "Update Profile Gagal", Toast.LENGTH_SHORT).show()
             }

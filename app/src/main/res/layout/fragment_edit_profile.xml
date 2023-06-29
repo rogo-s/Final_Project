@@ -24,13 +24,39 @@
         android:layout_marginTop="24dp"
         android:layout_below="@+id/txtProfile">
         <TextView
+            android:text="Email"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textFieldProf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:layout_marginBottom="16dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusBottomEnd="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmailProf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
             android:text="Nama"
             android:textColor="@color/black"
             android:layout_marginBottom="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldReg"
+            android:id="@+id/textFieldProfDua"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nama Lengkap"
@@ -56,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldRegTiga"
+            android:id="@+id/textFieldProfTiga"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="+62"
@@ -88,6 +114,7 @@
         android:fontFamily="@font/poppins_medium"
         app:cornerRadius="12dp"
         android:backgroundTint="#7126B5"
+        android:layout_marginBottom="50dp"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="60dp" />

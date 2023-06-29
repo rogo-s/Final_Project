@@ -20,15 +20,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     lateinit var binding : FragmentLoginBinding
-    lateinit var sharedPref : SharedPreferences
-    lateinit  var loginViewModel : UserViewModel
+    private lateinit var sharedPref : SharedPreferences
+    private lateinit  var loginViewModel : UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -48,15 +48,17 @@ class LoginFragment : Fragment() {
         }
 
         binding.forgotPass.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_resetPasswordFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
 
     }
 
 
-    fun doLogin(){
+    private fun doLogin(){
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
+        val dataEmail = sharedPref.getString("email", "")
+        val dataPass = sharedPref.getString("password", "")
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(requireContext(), "Please fill all the field", Toast.LENGTH_SHORT).show()
         } else {
@@ -68,6 +70,10 @@ class LoginFragment : Fragment() {
                     Log.d("HomeFragment", "token: ${it.accessToken}")
                     sPref.apply()
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment2)
+                } else if (email != dataEmail) {
+                    Toast.makeText(requireContext(), "Email tidak terdaftar", Toast.LENGTH_SHORT).show()
+                } else if (password != dataPass) {
+                    Toast.makeText(requireContext(), "Maaf, kata sandi salah", Toast.LENGTH_SHORT).show()
                 }
             }
         }

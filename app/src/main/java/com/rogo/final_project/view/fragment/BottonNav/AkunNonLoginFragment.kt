@@ -38,6 +38,10 @@ class AkunNonLoginFragment : Fragment() {
             findNavController().navigate(R.id.action_akunNonLoginFragment2_to_editProfileFragment)
         }
 
+        binding.keluar.setOnClickListener {
+            logout()
+        }
+
 //        binding.bt.setOnClickListener {
 //            pref.edit().clear().apply()
 //            Log.d("DataToken", pref.getString("token", "").toString())
@@ -80,6 +84,13 @@ class AkunNonLoginFragment : Fragment() {
             binding.akunNonLogin.visibility = View.VISIBLE
             binding.akunLogin.visibility = View.GONE
         }
+    }
+
+    fun logout(){
+        val logoutUser = sharedPref.edit()
+        logoutUser.clear()
+        logoutUser.apply()
+        findNavController().navigate(R.id.action_akunNonLoginFragment2_to_homeFragment2)
     }
 
     override fun onResume() {

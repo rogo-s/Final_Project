@@ -3,8 +3,6 @@ package com.rogo.final_project.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.rogo.final_project.local.datastore.TokenDataStore
 import com.rogo.final_project.network.RestfulApi
 import com.rogo.final_project.view.model.data.otp.DataOtp
 import com.rogo.final_project.view.model.data.otp.DataResendOtp
@@ -12,24 +10,21 @@ import com.rogo.final_project.view.model.data.otp.ResponseResendOtp
 import com.rogo.final_project.view.model.data.otp.ResponseVerify
 import com.rogo.final_project.view.model.data.login.DataLogin
 import com.rogo.final_project.view.model.data.login.ResponseDataLogin
-import com.rogo.final_project.view.model.data.profile.Data
 import com.rogo.final_project.view.model.data.profile.ResponseGetDataProfile
-import com.rogo.final_project.view.model.data.profile.ResponseProfileUpdate
 import com.rogo.final_project.view.model.data.profile.UpdateProfile
 import com.rogo.final_project.view.model.data.register.DataRegist
 import com.rogo.final_project.view.model.data.register.ResponseDataRegist
+import com.rogo.final_project.view.model.data.repass.ForgotPass
+import com.rogo.final_project.view.model.data.repass.ResetPass
+import com.rogo.final_project.view.model.data.repass.ResponseForgotPass
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class UserViewModel @Inject constructor(
-    var api: RestfulApi,
-    private val dataStore: TokenDataStore
-) : ViewModel() {
+class UserViewModel @Inject constructor( var api: RestfulApi) : ViewModel() {
 
     //loginViewModel
     private val _usersLogin = MutableLiveData<ResponseDataLogin?>()
@@ -52,12 +47,20 @@ class UserViewModel @Inject constructor(
 //    val usersLogout : MutableLiveData<ResponseLogout> = _usersLogout
 
     //updateViewModel
-    private val _profileUpdate = MutableLiveData<ResponseProfileUpdate?>()
-    val profileUpdate: MutableLiveData<ResponseProfileUpdate?> = _profileUpdate
+    private val _profileUpdate = MutableLiveData<ResponseDataRegist?>()
+    val profileUpdate: MutableLiveData<ResponseDataRegist?> = _profileUpdate
 
     //getProfileViewModel
     private val _usersGetProfile = MutableLiveData<ResponseGetDataProfile?>()
     val usersGetProfile: MutableLiveData<ResponseGetDataProfile?> = _usersGetProfile
+
+    //sendForgotPassViewModel
+    private val _forgotPass = MutableLiveData<ResponseForgotPass?>()
+    val forgotPass: MutableLiveData<ResponseForgotPass?> = _forgotPass
+
+    //resetPassViewModel
+    private val _resetPass = MutableLiveData<List<DataRegist>?>()
+    val resetPass: MutableLiveData<List<DataRegist>?> = _resetPass
 
     //login
     fun loginDataUser(data: DataLogin) {
@@ -167,10 +170,10 @@ class UserViewModel @Inject constructor(
 
     fun updateDataProfile(accessToken: String, data: UpdateProfile) {
         api.updateProfile("Bearer $accessToken", data)
-            .enqueue(object : Callback<ResponseProfileUpdate> {
+            .enqueue(object : Callback<ResponseDataRegist> {
                 override fun onResponse(
-                    call: Call<ResponseProfileUpdate>,
-                    response: Response<ResponseProfileUpdate>
+                    call: Call<ResponseDataRegist>,
+                    response: Response<ResponseDataRegist>
                 ) {
                     if (response.isSuccessful) {
                         _profileUpdate.postValue(response.body())
@@ -179,7 +182,7 @@ class UserViewModel @Inject constructor(
                     }
                 }
 
-                override fun onFailure(call: Call<ResponseProfileUpdate>, t: Throwable) {
+                override fun onFailure(call: Call<ResponseDataRegist>, t: Throwable) {
                     _profileUpdate.postValue(null)
                 }
             })
@@ -204,4 +207,41 @@ class UserViewModel @Inject constructor(
         })
     }
 
+    fun forgotPassword(data: ForgotPass) {
+        api.forgotPass(data).enqueue(object : Callback<ResponseForgotPass> {
+            override fun onResponse(
+                call: Call<ResponseForgotPass>,
+                response: Response<ResponseForgotPass>
+            ) {
+                if (response.isSuccessful) {
+                    _forgotPass.postValue(response.body())
+                } else {
+                    _forgotPass.postValue(null)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseForgotPass>, t: Throwable) {
+                _forgotPass.postValue(null)
+            }
+        })
+    }
+
+    fun resetPassword(data: ResetPass) {
+        api.resetPass(data).enqueue(object : Callback<List<DataRegist>> {
+            override fun onResponse(
+                call: Call<List<DataRegist>>,
+                response: Response<List<DataRegist>>
+            ) {
+                if (response.isSuccessful) {
+                    _resetPass.postValue(response.body())
+                } else {
+                    _resetPass.postValue(null)
+                }
+            }
+
+            override fun onFailure(call: Call<List<DataRegist>>, t: Throwable) {
+                _resetPass.postValue(null)
+            }
+        })
+    }
 }

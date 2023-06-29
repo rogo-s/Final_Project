@@ -71,25 +71,14 @@ class RegisterFragment : Fragment() {
         } else {
             registerViewModel.registDataUser(DataRegist(email, name, password, phoneNumber))
             registerViewModel.usersRegist.observe(viewLifecycleOwner) {
-                        val sharedPref = pref.edit()
-                        sharedPref.putString("email", email)
-                        sharedPref.putString("name", name)
-                        sharedPref.putString("telephone", phoneNumber)
-                        sharedPref.apply()
-                        findNavController().navigate(R.id.action_registerFragment_to_sendOtpFragment)
-                    }
-                }
+                val sharedPref = pref.edit()
+                sharedPref.putString("email", email)
+                sharedPref.putString("name", name)
+                sharedPref.putString("telephone", phoneNumber)
+                sharedPref.putString("password", password)
+                sharedPref.apply()
+                findNavController().navigate(R.id.action_registerFragment_to_sendOtpFragment)
             }
         }
-
-//    fun doRegist(data : DataRegist) {
-//        registerViewModel.registDataUser(data)
-//        registerViewModel.usersRegist.observe(viewLifecycleOwner) {
-//            if (it != null) {
-//                Toast.makeText(requireContext(), "Registrasi Berhasil", Toast.LENGTH_SHORT).show()
-//                findNavController().navigate(R.id.action_registerFragment_to_sendOtpFragment)
-//            } else {
-//                Toast.makeText(requireContext(), "Registrasi Gagal", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
+    }
+}
