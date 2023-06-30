@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragment.roundTrip.DetailDepature">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvDetailPenerbangan"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="16dp"
+            android:background="@drawable/radius_otp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvJamBerangkat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="07:00"
+                android:textColor="@color/NEUTRAL05"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="14sp"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTanggalBerangkat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 Maret 2023"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/NEUTRAL05"
+                android:layout_below="@id/tvJamBerangkat"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvBandara"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Soekarno Hatta - Terminal 1A Domestik"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/NEUTRAL05"
+                android:layout_below="@id/tvTanggalBerangkat"/>
+
+            <View
+                android:id="@+id/horizontalLine1"
+                android:layout_width="328dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/neutral02"
+                android:layout_below="@id/tvBandara"/>
+
+            <ImageView
+                android:id="@+id/icBunga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo_pesawat"
+                android:layout_below="@id/horizontalLine1"
+                android:layout_marginVertical="62.5dp"
+                android:contentDescription="iconBunga"
+                android:layout_marginEnd="8dp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvClassPesawat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jet Air - Economy"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/NEUTRAL05"
+                android:textSize="14sp"
+                android:layout_below="@+id/horizontalLine1"
+                android:layout_toEndOf="@+id/icBunga"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvBookingCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JT - 203"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/NEUTRAL05"
+                android:textSize="14sp"
+                android:layout_below="@+id/tvClassPesawat"
+                android:layout_toEndOf="@+id/icBunga"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/informasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi: "
+                android:layout_below="@+id/tvBookingCode"
+                android:layout_toEndOf="@+id/icBunga"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/NEUTRAL05"
+                android:textSize="14sp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/informasiSatu"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="12sp"
+                android:layout_below="@+id/informasi"
+                android:layout_toEndOf="@id/icBunga"
+                android:textColor="@color/NEUTRAL05"
+                android:text="Baggage 20kg"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/informasiDua"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp"
+                android:layout_below="@+id/informasiSatu"
+                android:layout_toEndOf="@id/icBunga"
+                android:textColor="@color/NEUTRAL05"
+                android:text="Cabin baggage 7kg"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/informasiTiga"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp"
+                android:layout_below="@+id/informasiDua"
+                android:layout_toEndOf="@id/icBunga"
+                android:textColor="@color/NEUTRAL05"
+                android:text="In Flight Entertainment"/>
+
+            <View
+                android:id="@+id/horizontalLine2"
+                android:layout_width="328dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/neutral02"
+                android:layout_below="@id/informasiTiga"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvJamDatang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11:00"
+                android:textColor="@color/NEUTRAL05"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="14sp"
+                android:layout_below="@id/horizontalLine2"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTanggalDatang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 Maret 2023"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/NEUTRAL05"
+                android:layout_below="@id/tvJamDatang"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvBandaraDatang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Melbourne International Airport"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/NEUTRAL05"
+                android:layout_below="@id/tvTanggalDatang"/>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvKeberangkatan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Keberangkatan"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/darkblue_03" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvKedatangan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Kedatangan"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/darkblue_03"
+                android:layout_below="@id/horizontalLine2"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

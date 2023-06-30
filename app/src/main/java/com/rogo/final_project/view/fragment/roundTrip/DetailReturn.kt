@@ -1,4 +1,4 @@
-package com.rogo.final_project.view.fragment.searching
+package com.rogo.final_project.view.fragment.roundTrip
 
 import android.os.Bundle
 import android.util.Log
@@ -7,42 +7,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
-import com.rogo.final_project.databinding.FragmentDetailNonLoginBinding
+import com.rogo.final_project.databinding.FragmentDetailDepatureBinding
+import com.rogo.final_project.databinding.FragmentDetailReturnBinding
 import com.rogo.final_project.viewmodel.DetailViewModel
+import com.rogo.final_project.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailNonLoginFragment : Fragment() {
-    private lateinit var binding : FragmentDetailNonLoginBinding
+class DetailReturn : Fragment() {
+    lateinit var binding: FragmentDetailReturnBinding
     private lateinit var DetailVm : DetailViewModel
+    lateinit var homeVm : HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDetailNonLoginBinding.inflate(inflater,container,false)
+        binding = FragmentDetailReturnBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         DetailVm = ViewModelProvider(this).get(DetailViewModel::class.java)
+        homeVm = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        val id = arguments?.getInt("id")
-        Log.d("Detail Fragment", "id = $id")
-        DetailVm.getdetailticket(id!!)
-
-        binding.btnSelectFlight.setOnClickListener {
-            findNavController().navigate(R.id.action_detailNonLoginFragment5_to_loginFragment)
-        }
-
-        binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_detailNonLoginFragment5_to_hasilPencarianFragment)
-        }
-
+        val idReturn = homeVm.getIdReturn()
+        DetailVm.getdetailticket(idReturn!!)
 
         DetailVm.livedetailticket.observe(viewLifecycleOwner) {detail->
             binding.apply {
@@ -59,22 +52,22 @@ class DetailNonLoginFragment : Fragment() {
                 val arrivalCity = detail.ticket.flight.arrivalCity
                 val classSeat = detail.ticket.classSeat
 
-                tvTimeArrive.text = arrivalTime
-                tvTimeDeparture.text = departureTime
-                tvPriceTicket.text = getPrice.toString()
-                tvDepartureAirport.text = depatureAirport
-                tvArriveAirport.text = arrivalAirport
-                tvFlightAsal.text = depatureCity
-                tvFlightDestination.text = arrivalCity
-                tvDateDeparture.text = dateDepature
-                tvDateArrive.text = arrivalDate
-                nomorseri.text = flightCode
-                cabinbaggage.text = baggage
-                KelasSeat.text = classSeat
+                tvJamDatang.text = arrivalTime
+                tvJamDatang.text = departureTime
+//                tvPriceTicket.text = getPrice.toString()
+//                tvBandaraDatang.text = depatureAirport
+                tvBandara.text = depatureCity
+                tvBandaraDatang.text = arrivalCity
+                tvTanggalBerangkat.text = dateDepature
+                tvTanggalDatang.text = arrivalDate
+                tvBookingCode.text = flightCode
+                informasi.text = baggage
+//                KelasSeat.text = classSeat
 
             }
 
         }
     }
+
 
 }

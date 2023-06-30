@@ -138,6 +138,7 @@
                             app:layout_constraintTop_toBottomOf="@id/viewLine" />
 
                         <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/tvSwitch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="40dp"
@@ -215,6 +216,17 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/etDepature" />
 
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivKalenderDua"
+                        android:layout_width="19dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="3dp"
+                        android:src="@drawable/ic_kalender"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="175dp"
+                        app:layout_constraintTop_toBottomOf="@id/tvReturn" />
+
+
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/tvReturn"
                         android:layout_width="wrap_content"
@@ -228,15 +240,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/btnSwitch" />
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/ivKalenderDua"
-                        android:layout_width="19dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="3dp"
-                        android:src="@drawable/ic_kalender"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="175dp"
-                        app:layout_constraintTop_toBottomOf="@id/tvReturn" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/etReturn"
@@ -374,6 +377,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRound"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/darkblue04"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Cari Penerbangan RoundTrip"
+                android:textAllCaps="false"
+                app:cornerRadius="12dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnCariPenerbangan" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvDestinasiFavorite"
                 android:layout_width="wrap_content"
@@ -385,7 +402,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnCariPenerbangan" />
+                app:layout_constraintTop_toBottomOf="@+id/btnRound" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvDestinasi"

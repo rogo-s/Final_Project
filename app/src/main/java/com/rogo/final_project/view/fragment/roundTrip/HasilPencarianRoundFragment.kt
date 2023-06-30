@@ -1,4 +1,4 @@
-package com.rogo.final_project.view.fragment.searching
+package com.rogo.final_project.view.fragment.roundTrip
 
 import android.app.DatePickerDialog
 import android.content.Context
@@ -13,20 +13,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rogo.final_project.R
-import com.rogo.final_project.databinding.FragmentHasilPencarianBinding
+import com.rogo.final_project.databinding.FragmentHasilPencarianRoundBinding
 import com.rogo.final_project.view.Adapter.HasilPencarianAdapter
-import com.rogo.final_project.view.Adapter.SearchAdapter
-import com.rogo.final_project.view.Adapter.SearchToAdapter
+import com.rogo.final_project.view.Adapter.RoundTripAdapter
 import com.rogo.final_project.viewmodel.HomeViewModel
-import com.rogo.final_project.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 @AndroidEntryPoint
-class HasilPencarianFragment : Fragment() {
-
-    lateinit var binding : FragmentHasilPencarianBinding
-//    private val viewModel : SearchViewModel by viewModels()
+class HasilPencarianRoundFragment : Fragment() {
+    lateinit var binding : FragmentHasilPencarianRoundBinding
     private val hmVm : HomeViewModel by viewModels()
     lateinit var fromPref : SharedPreferences
     private lateinit var searchAdapter: HasilPencarianAdapter
@@ -36,8 +32,8 @@ class HasilPencarianFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment'
-        binding = FragmentHasilPencarianBinding.inflate(layoutInflater, container, false)
+        // Inflate the layout for this fragment
+        binding = FragmentHasilPencarianRoundBinding.inflate(layoutInflater,container,false)
         return binding.root
     }
 
@@ -49,7 +45,14 @@ class HasilPencarianFragment : Fragment() {
 
         fromPref = requireContext().getSharedPreferences("keyTo", Context.MODE_PRIVATE)
         val cityArrival = fromPref.getString("arrivalCity","")
-
+//        viewModel.getTickets()
+//        searchAdapter = SearchAdapter()
+//        binding.rvListItem.adapter = searchAdapter
+//        binding.rvListItem.layoutManager = LinearLayoutManager(requireContext())
+//        viewModel.search.observe(viewLifecycleOwner){
+//            searchAdapter.differ.submitList(it.tickets)
+//
+//        }
         val cityFrom = hmVm.getCityFrom()
         val cityTo = hmVm.getCityTo()
         val dewasa = hmVm.getPenumpangDewasa()
@@ -65,10 +68,6 @@ class HasilPencarianFragment : Fragment() {
         departureOnly(cityFrom, cityTo, departure,arrived)
 
         dateToolbar(departure)
-
-        binding.topAppBar.setOnClickListener {
-            findNavController().navigate(R.id.action_hasilPencarianFragment_to_homeFragment2)
-        }
 
 
     }
@@ -100,10 +99,10 @@ class HasilPencarianFragment : Fragment() {
                     hmVm.saveDepartureDate(tanggalDeparture)
                     findNavController().navigate(R.id.hasilPencarianFragment)
                 }
-                    datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)
-                        .setTextColor(resources.getColor(R.color.darkblue_05))
-                    datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
-                        .setTextColor(resources.getColor(R.color.darkblue_05))
+                datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)
+                    .setTextColor(resources.getColor(R.color.darkblue_05))
+                datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
+                    .setTextColor(resources.getColor(R.color.darkblue_05))
             }
         }
     }
@@ -118,12 +117,17 @@ class HasilPencarianFragment : Fragment() {
 
         hmVm.livedatasearchallticket.observe(viewLifecycleOwner){
 
+//            binding.rvListItem.apply {
+//                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+//                adapter  = searchAdapter
+//            }
             binding.rvListItem.apply {
-                val searchAdapter = HasilPencarianAdapter(it)
+                val searchAdapter = RoundTripAdapter(it)
                 layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
                 adapter = searchAdapter
             }
 
         }
     }
+
 }

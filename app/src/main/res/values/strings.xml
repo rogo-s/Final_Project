@@ -30,4 +30,6 @@
         <item>Mrs.</item>
         <item>Ms.</item>
     </string-array>
+    <string name="str_pergi">Pergi</string>
+    <string name="str_pulang">Pulang</string>
 </resources>

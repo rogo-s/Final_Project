@@ -150,6 +150,10 @@ class HomeViewModel @Inject constructor(
         return sharedPreferences.getInt("idDep",0)
     }
 
+    fun getIdReturn(): Int?{
+        return sharedPreferences.getInt("idReturn",0)
+    }
+
     fun getCityTo():String?{
         return sharedPreferences.getString("keyTo"," ")
     }

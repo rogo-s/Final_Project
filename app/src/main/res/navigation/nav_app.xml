@@ -88,6 +88,12 @@
         <action
             android:id="@+id/action_homeFragment2_to_pencarianToFragment"
             app:destination="@id/pencarianToFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_hasilPencarianRoundFragment"
+            app:destination="@id/hasilPencarianRoundFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_hasilPencarianReturnFragment"
+            app:destination="@id/hasilPencarianReturnFragment" />
     </fragment>
     <fragment
         android:id="@+id/notifFragment2"
@@ -147,6 +153,9 @@
         <action
             android:id="@+id/action_hasilPencarianFragment_to_detailNonLoginFragment5"
             app:destination="@id/detailNonLoginFragment5" />
+        <action
+            android:id="@+id/action_hasilPencarianFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
     <dialog
         android:id="@+id/setPenempunganFragment"
@@ -160,7 +169,14 @@
     <fragment
         android:id="@+id/detailNonLoginFragment5"
         android:name="com.rogo.final_project.view.fragment.searching.DetailNonLoginFragment"
-        android:label="DetailNonLoginFragment" />
+        android:label="DetailNonLoginFragment" >
+        <action
+            android:id="@+id/action_detailNonLoginFragment5_to_hasilPencarianFragment"
+            app:destination="@id/hasilPencarianFragment" />
+        <action
+            android:id="@+id/action_detailNonLoginFragment5_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/pencarianFromFragment"
         android:name="com.rogo.final_project.view.fragment.searching.PencarianFromFragment"
@@ -188,4 +204,49 @@
             android:id="@+id/action_forgotPasswordFragment_to_resetPasswordFragment"
             app:destination="@id/resetPasswordFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/hasilPencarianReturnFragment"
+        android:name="com.rogo.final_project.view.fragment.roundTrip.HasilPencarianReturnFragment"
+        android:label="fragment_hasil_pencarian_return"
+        tools:layout="@layout/fragment_hasil_pencarian_return" >
+        <action
+            android:id="@+id/action_hasilPencarianReturnFragment_to_hasilPencarianRoundFragment"
+            app:destination="@id/hasilPencarianRoundFragment" />
+        <action
+            android:id="@+id/action_hasilPencarianReturnFragment_to_detailNonLoginFragment5"
+            app:destination="@id/detailNonLoginFragment5" />
+        <action
+            android:id="@+id/action_hasilPencarianReturnFragment_to_detailRound"
+            app:destination="@id/detailRound" />
+    </fragment>
+    <fragment
+        android:id="@+id/hasilPencarianRoundFragment"
+        android:name="com.rogo.final_project.view.fragment.roundTrip.HasilPencarianRoundFragment"
+        android:label="fragment_hasil_pencarian_round"
+        tools:layout="@layout/fragment_hasil_pencarian_round" >
+        <action
+            android:id="@+id/action_hasilPencarianRoundFragment_to_detailNonLoginFragment5"
+            app:destination="@id/detailNonLoginFragment5" />
+        <action
+            android:id="@+id/action_hasilPencarianRoundFragment_to_detailRound"
+            app:destination="@id/detailRound" />
+        <action
+            android:id="@+id/action_hasilPencarianRoundFragment_to_hasilPencarianReturnFragment"
+            app:destination="@id/hasilPencarianReturnFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailReturn"
+        android:name="com.rogo.final_project.view.fragment.roundTrip.DetailReturn"
+        android:label="fragment_detail_return"
+        tools:layout="@layout/fragment_detail_return" />
+    <fragment
+        android:id="@+id/detailDepature"
+        android:name="com.rogo.final_project.view.fragment.roundTrip.DetailDepature"
+        android:label="fragment_detail_depature"
+        tools:layout="@layout/fragment_detail_depature" />
+    <fragment
+        android:id="@+id/detailRound"
+        android:name="com.rogo.final_project.view.fragment.roundTrip.DetailRound"
+        android:label="fragment_detail_round"
+        tools:layout="@layout/fragment_detail_round" />
 </navigation>

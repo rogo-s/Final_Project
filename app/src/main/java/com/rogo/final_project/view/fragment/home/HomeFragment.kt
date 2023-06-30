@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,7 +49,7 @@ class HomeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-//        homeViewModel.getFlights()
+        homeViewModel.getFlights()
 
         val dateNowReturn = homeViewModel.getArrivedDate()
         val dateNowDeparture = homeViewModel.getDepartureDate()
@@ -72,43 +73,40 @@ class HomeFragment : Fragment() {
         binding.rvDestinasi.adapter = homeAdapter
 
 
-//        binding.etPassengers.setOnClickListener {
-//            SetPenempunganFragment().show(
-//                requireActivity().supportFragmentManager,
-//                SetPenempunganFragment.bottomTag
-//            )
-//        }
-
         binding.etPassengers.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment2_to_setPenempunganFragment)
         }
 
-//        binding.tvJakarta.setOnClickListener {
-//            BottomSheetPencarianFragment().show(
-//                requireActivity().supportFragmentManager,
-//                BottomSheetPencarianFragment.bottomTag
-//            )
-//        }
-//        binding.etReturn.setOnClickListener {
-//            BottomSheetDatePickerFragment().show(
-//                requireActivity().supportFragmentManager,
-//                BottomSheetDatePickerFragment.bottomTag
-//            )
-//        }
         binding.btnSwitch.setOnCheckedChangeListener { p0, isChecked ->
             if (isChecked) {
                 homeViewModel.saveselected(true)
-                binding.etReturn.visibility = View.VISIBLE
+                binding.btnRound.visibility = View.VISIBLE
 
             } else {
                 homeViewModel.saveselected(false)
-                binding.etReturn.visibility = View.GONE
+                binding.btnRound.visibility = View.GONE
 
             }
         }
+
         val getCheck = homeViewModel.getCheckedSwitch()
-        Log.d("Beranda Fragment","$getCheck")
+
+//        Log.d("Beranda Fragment","$getCheck")
         binding.btnSwitch.isChecked = getCheck
+
+        binding.btnCariPenerbangan.setOnClickListener {
+//            it.findNavController().navigate(R.id.action_homeFragment2_to_hasilPencarianFragment)
+            val getCheck = homeViewModel.getCheckedSwitch()
+            Log.d( "Beranda Fragment"," get check $getCheck")
+            if (getCheck){
+                Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment2_to_hasilPencarianFragment)
+
+            } else{
+                Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment2_to_hasilPencarianFragment)
+
+
+            }
+        }
 
         //search ke halaman pencarian kota/negara
         binding.tvFrom.setOnClickListener {
@@ -133,9 +131,19 @@ class HomeFragment : Fragment() {
                 BottomSheetKelasFragment.bottomTag
             )
         }
-        binding.btnCariPenerbangan.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment2_to_hasilPencarianFragment)
+
+        binding.btnRound.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_hasilPencarianRoundFragment)
         }
+
+        binding.tvSwitch.setOnClickListener {
+            val fromText = binding.tvJakarta.text.toString()
+            val toText = binding.tvMelbourne.text.toString()
+
+            binding.tvJakarta.text = toText
+            binding.tvMelbourne.text = fromText
+        }
+
 
     }
 
