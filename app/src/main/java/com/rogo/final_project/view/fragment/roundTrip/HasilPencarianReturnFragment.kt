@@ -18,6 +18,7 @@ import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentHasilPencarianReturnBinding
 import com.rogo.final_project.view.Adapter.HasilPencarianAdapter
 import com.rogo.final_project.view.Adapter.RoundAdapter
+import com.rogo.final_project.view.Adapter.RoundTripAdapter
 import com.rogo.final_project.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -28,7 +29,7 @@ class HasilPencarianReturnFragment : Fragment() {
     lateinit var binding: FragmentHasilPencarianReturnBinding
     private val hmVm: HomeViewModel by viewModels()
     lateinit var fromPref: SharedPreferences
-    private lateinit var searchAdapter: HasilPencarianAdapter
+    private lateinit var roundAdapter: RoundAdapter
     private var tanggalPergi: String? = null
 
     override fun onCreateView(
@@ -146,13 +147,34 @@ class HasilPencarianReturnFragment : Fragment() {
     ) {
         val cityFromReturn = cityFrom
         val cityToReturn = cityTo
+
         hmVm.searchallticket(cityFromReturn!!, cityToReturn!!, seatClass!!, dateReturn!!)
         hmVm.livedatasearchallticket.observe(viewLifecycleOwner) {
             binding.rvListItem.apply {
-                val searchAdapter = RoundAdapter(it)
-                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
-                adapter = searchAdapter
+                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                roundAdapter = RoundAdapter(it){ itemTicket ->
+                    val idReturn = itemTicket.id
+                    val priceReturn = itemTicket.price
+                    val idDeparture = arguments?.getInt("idDep")
+                    val hargaPergi = arguments?.getInt("pricePergi")
+                    val bundle = Bundle()
+                    hmVm.saveIdReturn(idReturn)
+                    bundle.putInt("idReturn", idReturn)
+                    bundle.putInt("idDeparture", idDeparture!!)
+                    if (hargaPergi != null) {
+                        bundle.putInt("hargaPergi",hargaPergi)
+                    }
+                    bundle.putInt("hargaPulang",priceReturn)
+                    findNavController().navigate(R.id.action_hasilPencarianReturnFragment_to_detailRound, bundle)
+                }
+                adapter = roundAdapter
+                isNestedScrollingEnabled = false
             }
+//            binding.rvListItem.apply {
+//                val searchAdapter = RoundAdapter(it)
+//                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+//                adapter = searchAdapter
+//            }
         }
     }
 

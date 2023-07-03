@@ -9,7 +9,7 @@ import com.rogo.final_project.R
 import com.rogo.final_project.databinding.ItemHasilPencarianBinding
 import com.rogo.final_project.view.model.data.search.Data
 
-class RoundAdapter(val listairport : List<Data>) : RecyclerView.Adapter<RoundAdapter.ViewHolder>() {
+class RoundAdapter(val listairport : List<Data>, private val onSelect:(Data) -> Unit) : RecyclerView.Adapter<RoundAdapter.ViewHolder>() {
 
     class ViewHolder(val binding : ItemHasilPencarianBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -30,11 +30,12 @@ class RoundAdapter(val listairport : List<Data>) : RecyclerView.Adapter<RoundAda
         holder.binding.tvClassSeat.text = listairport[position].classSeat
         holder.binding.tvClassPesawat.text = listairport[position].flight.airline
 
-        holder.binding.cvHasilPencarian.setOnClickListener {item ->
-            val id = listairport[position].id
-            val bundle = Bundle()
-            bundle.putInt("id", id!!)
-            Navigation.findNavController(item).navigate(R.id.action_hasilPencarianReturnFragment_to_detailRound, bundle)
+        holder.binding.cvHasilPencarian.setOnClickListener {
+            onSelect(listairport[position])
+//            val id = listairport[position].id
+//            val bundle = Bundle()
+//            bundle.putInt("id", id!!)
+//            Navigation.findNavController(item).navigate(R.id.action_hasilPencarianReturnFragment_to_detailRound, bundle)
         }
 
     }

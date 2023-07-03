@@ -3,6 +3,7 @@ package com.rogo.final_project.view.fragment.roundTrip
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentDetailDepatureBinding
 import com.rogo.final_project.databinding.FragmentDetailRoundBinding
+import com.rogo.final_project.util.Utill
 import com.rogo.final_project.view.Adapter.SectionPagerAdapter
 import com.rogo.final_project.viewmodel.DetailViewModel
 import com.rogo.final_project.viewmodel.HomeViewModel
@@ -38,7 +40,13 @@ class DetailRound : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pref = requireContext().getSharedPreferences("login_data", Context.MODE_PRIVATE)
+        val id = arguments?.getInt("id")
+        val hargaPergi = arguments?.getInt("hargaPergi")
+        val hargaPulang = arguments?.getInt("hargaPulang")
         DetailVm = ViewModelProvider(this).get(DetailViewModel::class.java)
+
+        Log.d("DetailPenerbanganPP", "Harga: $hargaPergi")
+        Log.d("DetailPenerbanganPP", "Harga: $hargaPulang")
 
 
         val sectionPagerAdapter = SectionPagerAdapter(activity as AppCompatActivity)
@@ -48,6 +56,9 @@ class DetailRound : Fragment() {
             TAB_TITLES[position]
         )
         }.attach()
+
+        val priceTotal = hargaPergi?.plus(hargaPulang!!)
+        binding.txtHargaTotal.text = Utill.getPriceIdFormat(priceTotal!!)
 
 
     }

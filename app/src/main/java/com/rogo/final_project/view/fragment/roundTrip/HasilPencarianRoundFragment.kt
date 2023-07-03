@@ -25,7 +25,7 @@ class HasilPencarianRoundFragment : Fragment() {
     lateinit var binding : FragmentHasilPencarianRoundBinding
     private val hmVm : HomeViewModel by viewModels()
     lateinit var fromPref : SharedPreferences
-    private lateinit var searchAdapter: HasilPencarianAdapter
+    private lateinit var roundAdapter: RoundTripAdapter
     private var tanggalPergi:String? = null
 
     override fun onCreateView(
@@ -116,16 +116,31 @@ class HasilPencarianRoundFragment : Fragment() {
         hmVm.searchallticket(cityFrom!!,cityTo!!,dateDeparture!!,arrivedDate!!)
 
         hmVm.livedatasearchallticket.observe(viewLifecycleOwner){
+            binding.rvListItem.apply {
+                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                roundAdapter = RoundTripAdapter(it) {itemTicket ->
+                    val id = itemTicket.id
+                    val hargaPergi = itemTicket.price
+                    val bundle = Bundle()
+                    hmVm.saveIdDeparture(id)
+                    bundle.putInt("idDep", id)
+                    bundle.putInt("pricePergi",hargaPergi)
+                    findNavController().navigate(R.id.action_hasilPencarianRoundFragment_to_hasilPencarianReturnFragment, bundle)
+                }
+                adapter = roundAdapter
+                isNestedScrollingEnabled = false
+            }
 
 //            binding.rvListItem.apply {
 //                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
 //                adapter  = searchAdapter
 //            }
-            binding.rvListItem.apply {
-                val searchAdapter = RoundTripAdapter(it)
-                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
-                adapter = searchAdapter
-            }
+//            binding.rvListItem.apply {
+//                val searchAdapter = RoundTripAdapter(it)
+//
+//                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+//                adapter = searchAdapter
+//            }
 
         }
     }
