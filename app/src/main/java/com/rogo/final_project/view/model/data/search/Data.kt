@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName
 data class Data(
     @SerializedName("additionalInformation")
     val additionalInformation: String,
+    @SerializedName("availableSeat")
+    val availableSeat: String,
     @SerializedName("classSeat")
     val classSeat: String,
     @SerializedName("createdAt")

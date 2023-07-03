@@ -15,8 +15,8 @@ import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentPencarianFromBinding
 import com.rogo.final_project.view.Adapter.HistorySeachAdapter
 import com.rogo.final_project.view.Adapter.SearchFromAdapter
-import com.rogo.final_project.view.model.data.search.Flight
 import com.rogo.final_project.viewmodel.HomeViewModel
+import com.rogo.final_project.view.model.data.search.Flight
 import com.rogo.final_project.viewmodel.SearchViewModel
 
 class PencarianFromFragment : Fragment() {

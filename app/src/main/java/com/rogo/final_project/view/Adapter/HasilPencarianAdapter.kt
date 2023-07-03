@@ -1,16 +1,13 @@
 package com.rogo.final_project.view.Adapter
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.ItemHasilPencarianBinding
 import com.rogo.final_project.view.model.data.search.Data
-import com.rogo.final_project.view.model.data.search.Flight
 
 class HasilPencarianAdapter(val listairport : List<Data>) : RecyclerView.Adapter<HasilPencarianAdapter.ViewHolder>() {
     class ViewHolder(val binding : ItemHasilPencarianBinding) : RecyclerView.ViewHolder(binding.root) {

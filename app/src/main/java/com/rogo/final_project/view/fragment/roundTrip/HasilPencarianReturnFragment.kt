@@ -18,7 +18,6 @@ import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentHasilPencarianReturnBinding
 import com.rogo.final_project.view.Adapter.HasilPencarianAdapter
 import com.rogo.final_project.view.Adapter.RoundAdapter
-import com.rogo.final_project.view.model.data.search.Data
 import com.rogo.final_project.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*

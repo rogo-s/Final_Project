@@ -12,14 +12,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rogo.final_project.R
-import com.rogo.final_project.databinding.FragmentPencarianFromBinding
 import com.rogo.final_project.databinding.FragmentPencarianToBinding
 import com.rogo.final_project.view.Adapter.HistorySeachAdapter
-import com.rogo.final_project.view.Adapter.SearchFromAdapter
 import com.rogo.final_project.view.Adapter.SearchToAdapter
-import com.rogo.final_project.view.model.data.search.Flight
 import com.rogo.final_project.viewmodel.HomeViewModel
-import com.rogo.final_project.viewmodel.SearchViewModel
+import com.rogo.final_project.view.model.data.search.Flight
 
 
 class PencarianToFragment : Fragment() {
@@ -68,7 +65,7 @@ class PencarianToFragment : Fragment() {
 //                    Flight.departureCity.contains(searchText, ignoreCase = true)
 //
 //               }
-                val listFlight:ArrayList<Flight> = ArrayList()
+                val listFlight:ArrayList< Flight> = ArrayList()
                 val data = searchResults.data
                 for (i in data.indices) {
                     listFlight.add(data[i].flight)

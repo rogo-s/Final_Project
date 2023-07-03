@@ -9,7 +9,6 @@ import com.rogo.final_project.local.datastore.TokenDataStore
 import com.rogo.final_project.network.RestfulApi
 import com.rogo.final_project.view.model.data.flight.GetFlightResponse
 import com.rogo.final_project.view.model.data.search.Data
-import com.rogo.final_project.view.model.data.search.Flight
 import com.rogo.final_project.view.model.data.search.SearchTiketsResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
@@ -123,7 +122,7 @@ class HomeViewModel @Inject constructor(
         val day = c.get(Calendar.DAY_OF_MONTH)
         val bulan = nameMonth[month]
 //        val tanggal = "2023-5-26"
-        val defaultTanggal = "$year-${month+1}-$day"
+        val defaultTanggal = "$year-0${month+1}-0$day"
         return sharedPreferences.getString("departure",defaultTanggal)
     }
 

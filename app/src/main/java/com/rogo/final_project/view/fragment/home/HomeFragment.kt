@@ -171,7 +171,7 @@ class HomeFragment : Fragment() {
                 val month = datePicker.month
                 val tahunDeparture = datePicker.year
                 val hariDeparture = datePicker.dayOfMonth
-                val tanggalDeparture = "$tahunDeparture-${month+1}-$hariDeparture"
+                val tanggalDeparture = "$tahunDeparture-0${month+1}-0$hariDeparture"
                 homeViewModel.saveDepartureDate(tanggalDeparture)
                 findNavController().navigate(R.id.homeFragment2)
             }
@@ -206,7 +206,7 @@ class HomeFragment : Fragment() {
                 val month = datePicker.month
                 val tahun = datePicker.year
                 val hari = datePicker.dayOfMonth
-                val tanggalPilihan = "$tahun-${month+1}-$hari"
+                val tanggalPilihan = "$tahun-0${month+1}-0$hari"
                 homeViewModel.saveDatePref(tanggalPilihan)
                 findNavController().navigate(R.id.homeFragment2)
             }

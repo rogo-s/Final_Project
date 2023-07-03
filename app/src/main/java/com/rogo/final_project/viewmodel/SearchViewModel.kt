@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.rogo.final_project.network.RestfulApi
-import com.rogo.final_project.view.model.data.search.Flight
 import com.rogo.final_project.view.model.data.search.SearchTiketsResponse
 import com.rogo.final_project.view.model.data.ticket.GetTicketResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
