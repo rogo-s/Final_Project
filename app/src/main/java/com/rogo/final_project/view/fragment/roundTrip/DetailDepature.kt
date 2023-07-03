@@ -52,7 +52,7 @@ class DetailDepature : Fragment() {
                 val classSeat = detail.ticket.classSeat
 
                 tvJamDatang.text = arrivalTime
-                tvJamDatang.text = departureTime
+                tvJamBerangkat.text = departureTime
 //                tvPriceTicket.text = getPrice.toString()
 //                tvBandaraDatang.text = depatureAirport
                 tvBandara.text = depatureCity
