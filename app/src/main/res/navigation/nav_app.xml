@@ -99,7 +99,11 @@
         android:id="@+id/notifFragment2"
         android:name="com.rogo.final_project.view.fragment.BottonNav.NotifFragment"
         android:label="fragment_notif"
-        tools:layout="@layout/fragment_notif" />
+        tools:layout="@layout/fragment_notif" >
+        <action
+            android:id="@+id/action_notifFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/akunNonLoginFragment2"
         android:name="com.rogo.final_project.view.fragment.BottonNav.AkunNonLoginFragment"

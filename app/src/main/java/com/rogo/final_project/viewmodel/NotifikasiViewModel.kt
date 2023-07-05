@@ -4,7 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.rogo.final_project.network.RestfulApi
 import com.rogo.final_project.view.model.data.checkout.ResponseGetCheckout
+import com.rogo.final_project.view.model.data.flight.GetFlightResponse
 import com.rogo.final_project.view.model.data.notifikasi.ResponseGetNotif
+import com.rogo.final_project.view.model.data.ticket.GetTicketResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,8 +18,11 @@ import javax.inject.Inject
 class NotifikasiViewModel @Inject constructor(var api: RestfulApi) : ViewModel() {
 
     //getNotifikasiViewModel
-    private val _getNotifikasi = MutableLiveData<ResponseGetNotif?>()
-    val getNotifikasi: MutableLiveData<ResponseGetNotif?> = _getNotifikasi
+//    private val _getNotifikasi = MutableLiveData<ResponseGetNotif?>()
+//    val getNotifikasi: MutableLiveData<ResponseGetNotif?> = _getNotifikasi
+
+    private val _getNotifikasi = MutableLiveData<ResponseGetNotif>()
+    val getNotifikasi: MutableLiveData<ResponseGetNotif> = _getNotifikasi
 
     fun getNotif(accessToken: String) {
         api.getNotif("Bearer $accessToken")
@@ -28,13 +33,11 @@ class NotifikasiViewModel @Inject constructor(var api: RestfulApi) : ViewModel()
                 ) {
                     if (response.isSuccessful) {
                         _getNotifikasi.postValue(response.body())
-                    } else {
-                        _getNotifikasi.postValue(null)
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseGetNotif>, t: Throwable) {
-                    _getNotifikasi.postValue(null)
+                    TODO("Not yet implemented")
                 }
             })
     }

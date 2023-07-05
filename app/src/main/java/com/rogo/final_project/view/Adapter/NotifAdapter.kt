@@ -7,10 +7,10 @@ import com.rogo.final_project.databinding.ItemHasilPencarianBinding
 import com.rogo.final_project.databinding.NotificationItemBinding
 import com.rogo.final_project.view.Adapter.HasilPencarianAdapter
 import com.rogo.final_project.view.Adapter.HomeAdapter
-import com.rogo.final_project.view.model.data.search.Data
+import com.rogo.final_project.view.model.data.notifikasi.Data
 
 
-class NotifAdapter(val listairport : List<Data>,  private val onSelect:(Data) -> Unit) : RecyclerView.Adapter<NotifAdapter.ViewHolder>() {
+class NotifAdapter(val listairport : List<Data>) : RecyclerView.Adapter<NotifAdapter.ViewHolder>() {
 
     class ViewHolder(val binding : NotificationItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -21,23 +21,10 @@ class NotifAdapter(val listairport : List<Data>,  private val onSelect:(Data) ->
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: HasilPencarianAdapter.ViewHolder, position: Int) {
-        holder.binding.tvJamBerangkat.text = listairport[position].flight.departureTime
-        holder.binding.tvInisial.text = listairport[position].flight.departureCity
-        holder.binding.tvEstimasiWaktu.text = listairport[position].flight.duration
-        holder.binding.tvJamTiba.text = listairport[position].flight.arrivalTime
-        holder.binding.tvInisialDua.text = listairport[position].flight.arrivalCity
-        holder.binding.tvHarga.text = listairport[position].price.toString()
-        holder.binding.tvClassSeat.text = listairport[position].classSeat
-        holder.binding.tvClassPesawat.text = listairport[position].flight.airline
-
-        holder.binding.cvHasilPencarian.setOnClickListener {
-            onSelect(listairport[position])
-//            val id = listairport[position].id
-//            val bundle = Bundle()
-//            bundle.putInt("id", id!!)
-//            Navigation.findNavController(item).navigate(R.id.action_hasilPencarianFragment_to_detailNonLoginFragment5, bundle)
-        }
+    override fun onBindViewHolder(holder: NotifAdapter.ViewHolder, position: Int) {
+        holder.binding.Tittle.text = listairport[position].title
+        holder.binding.DetailNotif.text = listairport[position].text
+        holder.binding.tgl.text = listairport[position].createdAt
 
     }
 

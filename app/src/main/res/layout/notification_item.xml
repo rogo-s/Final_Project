@@ -41,6 +41,16 @@
                 android:layout_toRightOf="@id/notifications"
                 android:text="5 Maret, 14:04" />
 
+            <TextView
+                android:id="@+id/Tittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/notifications"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:text="JUDUL NOTIFIKASI"
+                android:textSize="20sp" />
+
             <ImageView
                 android:id="@+id/pointerred"
                 android:layout_width="10dp"
@@ -61,13 +71,14 @@
                 android:id="@+id/DetailNotif"
                 android:layout_width="329dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/notifications"
+                android:layout_below="@+id/Tittle"
                 android:layout_marginLeft="1dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/imgnotifikasi"
                 android:text="Terdapat Perubahan pada jadwal penerbangan kode booking 45GT6. Cek jadwal perjalanan Anda disini!"
                 android:textColor="@color/black"
                 android:textSize="20sp"
+
                 android:textStyle="bold" />
 
 

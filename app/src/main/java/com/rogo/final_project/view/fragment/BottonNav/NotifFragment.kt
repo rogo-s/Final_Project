@@ -1,19 +1,30 @@
 package com.rogo.final_project.view.fragment.BottonNav
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentNotifBinding
+import com.rogo.final_project.viewmodel.NotifikasiViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class NotifFragment : Fragment() {
 
     lateinit var binding : FragmentNotifBinding
     lateinit var sharedPref: SharedPreferences
+//    private lateinit var notifAdapter: NotifAdapter
+    lateinit var notifVM : NotifikasiViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +37,55 @@ class NotifFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        login()
 
+//        notifAdapter = NotifAdapter(ArrayList())
+//
+//        notifVM = ViewModelProvider(this).get(NotifikasiViewModel::class.java)
+
+    }
+
+    private fun login() {
+        binding.btnMasuk.setOnClickListener {
+            view?.post {
+                findNavController().navigate(R.id.action_notifFragment2_to_loginFragment)
+            }
+        }
+    }
+
+    private fun isLogin() {
+        sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
+        Log.d("Berhasil", sharedPref.getString("token", " ").toString())
+        Log.d("Berhasil", sharedPref.getString("refreshToken", " ").toString())
+        if (sharedPref.getString("token", "").toString().isNotEmpty()) {
+            binding.akunLogin.visibility = View.VISIBLE
+//            getDataNotif()
+            Log.d("Berhasil Login", "berhasil")
+            binding.akunNonLogin.visibility = View.GONE
+
+        } else {
+            binding.akunNonLogin.visibility = View.VISIBLE
+            binding.akunLogin.visibility = View.GONE
+        }
+    }
+
+//    fun getDataNotif(){
+//        val token = sharedPref.getString("token", "").toString()
+//        notifVM.getNotif(token)
+//        Log.d("historytoken", token)
+//        notifVM.getNotifikasi.observe(viewLifecycleOwner){
+//            binding.rvNotif.apply {
+//                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+//                adapter = notifAdapter
+//            }
+//
+//        }
+//
+//    }
+
+    override fun onResume() {
+        super.onResume()
+        isLogin()
     }
 
 
