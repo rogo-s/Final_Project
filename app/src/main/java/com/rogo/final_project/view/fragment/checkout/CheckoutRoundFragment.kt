@@ -44,8 +44,8 @@ class CheckoutRoundFragment : Fragment() {
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
 //        val id = arguments?.getInt("id")
-        val hargaPergi = arguments?.getInt("hargaPergi")
-        val hargaPulang = arguments?.getInt("hargaPulang")
+//        val hargaPergi = arguments?.getInt("hargaPergi")
+//        val hargaPulang = arguments?.getInt("hargaPulang")
 
         DetailVm = ViewModelProvider(this).get(DetailViewModel::class.java)
 
@@ -54,10 +54,10 @@ class CheckoutRoundFragment : Fragment() {
         val idReturn = homeViewModel.getIdReturn()
         DetailVm.getdetailticket(idReturn!!)
 
-        Log.d("DetailPenerbanganPP", "Harga: $hargaPergi")
-        Log.d("DetailPenerbanganPP", "Harga: $hargaPulang")
+//        Log.d("DetailPenerbanganPP", "Harga: $hargaPergi")
+//        Log.d("DetailPenerbanganPP", "Harga: $hargaPulang")
 
-        val sectionPagerAdapter = SectionPagerAdapter(activity as AppCompatActivity)
+        val sectionPagerAdapter = CheckoutDetailAdapterRound(activity as AppCompatActivity)
         binding.viewPager.adapter = sectionPagerAdapter
         TabLayoutMediator(binding.tabs,binding.viewPager){
                 tab,position ->  tab.text = resources.getString(
@@ -65,8 +65,8 @@ class CheckoutRoundFragment : Fragment() {
         )
         }.attach()
 
-        val priceTotal = hargaPergi?.plus(hargaPulang!!)
-        binding.totalPrice.text = Utill.getPriceIdFormat(priceTotal!!)
+//        val priceTotal = hargaPergi?.plus(hargaPulang!!)
+//        binding.totalPrice.text = Utill.getPriceIdFormat(priceTotal!!)
 
         binding.btnSave.setOnClickListener {
             homeViewModel.saveIdTicket(id!!)
@@ -81,6 +81,28 @@ class CheckoutRoundFragment : Fragment() {
                 findNavController().popBackStack(fragId!!, true)
                 findNavController().navigate(R.id.bottomSheetCheckoutFragment)
             }
+        }
+
+        DetailVm.livedetailticket.observe(viewLifecycleOwner) {detail->
+            binding.apply {
+                val dewasa = homeViewModel.getPenumpangDewasa()
+                val anak = homeViewModel.getPenumpangAnak()
+                val bayi = homeViewModel.getPenumpangBayi()
+                val total = dewasa + anak + bayi
+                val priceDepature = detail.ticket.price
+                val priceArrival = detail.ticket.price
+                val totalHarga = priceDepature + priceArrival
+
+
+                jumlah.text = "$total Passangers"
+//                totalPrice.text = totalHarga.toString()
+
+                val priceTotal = priceDepature?.plus(priceArrival!!)
+                binding.totalPrice.text = Utill.getPriceIdFormat(priceTotal!!)
+                binding.hargaSatu.text = Utill.getPriceIdFormat(priceTotal!!)
+
+            }
+
         }
     }
 

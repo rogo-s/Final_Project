@@ -24,4 +24,5 @@ class PaymentFragment : Fragment() {
         return binding.root
     }
 
+
 }

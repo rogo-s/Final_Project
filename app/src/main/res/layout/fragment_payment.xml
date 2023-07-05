@@ -360,6 +360,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
+            android:id="@+id/cvGopay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
@@ -399,6 +400,7 @@
         android:layout_below="@id/appBar2"
         app:layout_constraintTop_toTopOf="parent">
         <RelativeLayout
+            android:id="@+id/cvCreditCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
