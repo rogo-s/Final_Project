@@ -279,6 +279,9 @@
         <action
             android:id="@+id/action_checkoutBioPenumpangFragment_to_checkoutFragment"
             app:destination="@id/checkoutFragment" />
+        <action
+            android:id="@+id/action_checkoutBioPenumpangFragment_to_checkoutRoundFragment"
+            app:destination="@id/checkoutRoundFragment" />
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"
@@ -312,4 +315,13 @@
         android:name="com.rogo.final_project.view.fragment.searching.PaymentFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" />
+    <fragment
+        android:id="@+id/checkoutRoundFragment"
+        android:name="com.rogo.final_project.view.fragment.checkout.CheckoutRoundFragment"
+        android:label="fragment_checkout_round"
+        tools:layout="@layout/fragment_checkout_round" >
+        <action
+            android:id="@+id/action_checkoutRoundFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
 </navigation>

@@ -88,7 +88,7 @@ class CheckoutBioPenumpangFragment : Fragment() {
 //                sPref.putString("total", total!!.toInt())
 //                sPref.putString("telephone", phoneNumber)
 //                sPref.apply()
-                findNavController().navigate(R.id.action_checkoutBioPenumpangFragment_to_checkoutFragment)
+                findNavController().navigate(R.id.action_checkoutBioPenumpangFragment_to_checkoutRoundFragment)
             } else {
                 Toast.makeText(requireContext(), "Data Checkout Tidak Tersimpan", Toast.LENGTH_SHORT).show()
             }
