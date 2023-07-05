@@ -56,7 +56,9 @@ class SetPenempunganFragment : BottomSheetDialogFragment() {
             val tvAnak = binding.passangerChild.text.toString()
 
             homeViewModel.savePenumpangPreferences(tvDewasa.toInt(), tvAnak.toInt(), tvBayi.toInt())
+
             findNavController().navigate(R.id.action_setPenempunganFragment_to_homeFragment2)
+
 
         }
     }

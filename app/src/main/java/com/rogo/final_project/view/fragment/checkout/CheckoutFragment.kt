@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentCheckoutBinding
+import com.rogo.final_project.util.Utill
 import com.rogo.final_project.viewmodel.DetailViewModel
 import com.rogo.final_project.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +24,7 @@ class CheckoutFragment : Fragment() {
     private lateinit var DetailVm : DetailViewModel
     private val homeViewModel : HomeViewModel by viewModels()
     lateinit var sharedPref : SharedPreferences
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +42,9 @@ class CheckoutFragment : Fragment() {
 
         DetailVm = ViewModelProvider(this).get(DetailViewModel::class.java)
 
-        val id = arguments?.getInt("id")
-        Log.d("Detail Fragment", "id = $id")
-        DetailVm.getdetailticket(id!!)
+
+        val idSingle = homeViewModel.getTicketId()
+        DetailVm.getdetailticket(idSingle!!)
 
         binding.btnSave.setOnClickListener {
             homeViewModel.saveIdTicket(id!!)
@@ -60,10 +62,10 @@ class CheckoutFragment : Fragment() {
         }
 
         DetailVm.livedetailticket.observe(viewLifecycleOwner) { detail ->
+
             binding.apply {
                 val departureTime = detail!!.ticket.flight.departureTime
                 val arrivalTime = detail.ticket.flight.arrivalTime
-                val getPrice = detail.ticket.price
                 val depatureAirport = detail.ticket.flight.departureAirport
                 val arrivalAirport = detail.ticket.flight.arrivalAirport
                 val baggage = detail.ticket.additionalInformation
@@ -73,10 +75,16 @@ class CheckoutFragment : Fragment() {
                 val depatureCity = detail.ticket.flight.departureCity
                 val arrivalCity = detail.ticket.flight.arrivalCity
                 val classSeat = detail.ticket.classSeat
+                val hargatotal = detail.ticket.price
+
+                val dewasa = homeViewModel.getPenumpangDewasa()
+                val anak = homeViewModel.getPenumpangAnak()
+                val bayi = homeViewModel.getPenumpangBayi()
+                val total = dewasa + anak + bayi
 
                 kedatangan.text = arrivalTime
                 keberangkatan.text = departureTime
-                price.text = getPrice.toString()
+
                 keberangkatanAirport.text = depatureAirport
                 kedatanganAirport.text = arrivalAirport
                 txtAsal.text = depatureCity
@@ -86,6 +94,12 @@ class CheckoutFragment : Fragment() {
                 noPesawat.text = flightCode
                 bagasi.text = baggage
                 kelasSeat.text = classSeat
+
+
+                harga.text = hargatotal.toString()
+                totalPrice.text = hargatotal.toString()
+                jumlah.text = "$total Passangers"
+
             }
         }
     }

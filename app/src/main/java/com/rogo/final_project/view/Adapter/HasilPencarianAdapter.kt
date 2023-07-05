@@ -9,7 +9,7 @@ import com.rogo.final_project.R
 import com.rogo.final_project.databinding.ItemHasilPencarianBinding
 import com.rogo.final_project.view.model.data.search.Data
 
-class HasilPencarianAdapter(val listairport : List<Data>) : RecyclerView.Adapter<HasilPencarianAdapter.ViewHolder>() {
+class HasilPencarianAdapter(val listairport : List<Data>,  private val onSelect:(Data) -> Unit) : RecyclerView.Adapter<HasilPencarianAdapter.ViewHolder>() {
     class ViewHolder(val binding : ItemHasilPencarianBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -29,11 +29,12 @@ class HasilPencarianAdapter(val listairport : List<Data>) : RecyclerView.Adapter
         holder.binding.tvClassSeat.text = listairport[position].classSeat
         holder.binding.tvClassPesawat.text = listairport[position].flight.airline
 
-        holder.binding.cvHasilPencarian.setOnClickListener {item ->
-            val id = listairport[position].id
-            val bundle = Bundle()
-            bundle.putInt("id", id!!)
-            Navigation.findNavController(item).navigate(R.id.action_hasilPencarianFragment_to_detailNonLoginFragment5, bundle)
+        holder.binding.cvHasilPencarian.setOnClickListener {
+            onSelect(listairport[position])
+//            val id = listairport[position].id
+//            val bundle = Bundle()
+//            bundle.putInt("id", id!!)
+//            Navigation.findNavController(item).navigate(R.id.action_hasilPencarianFragment_to_detailNonLoginFragment5, bundle)
         }
 
     }

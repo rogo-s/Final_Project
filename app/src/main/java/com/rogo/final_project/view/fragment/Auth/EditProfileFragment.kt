@@ -43,23 +43,23 @@ class EditProfileFragment : Fragment() {
 //        binding.etNameProf.setText(getName)
 //        binding.etPhoneProf.setText(getPhone)
 
-//        getdataProfile()
+        getdataProfile()
 
         binding.btnUpdate.setOnClickListener{
             updateProfile()
         }
     }
 
-//    fun getdataProfile(){
-//        sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
-//        val accessToken = sharedPref.getString("token", "").toString()
-//        profileViewModel.getDataProfile(accessToken)
-//        profileViewModel.usersGetProfile.observe(viewLifecycleOwner) {
+    fun getdataProfile(){
+        sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
+        val accessToken = sharedPref.getString("token", "").toString()
+        profileViewModel.getDataProfile(accessToken)
+        profileViewModel.usersGetProfile.observe(viewLifecycleOwner) {
 //            binding.etEmailProf.setText(it!!.data.email)
-//            binding.etNameProf.setText(it!!.data.name)
-//            binding.etPhoneProf.setText(it!!.data.phoneNumber)
-//        }
-//    }
+            binding.etNameProf.setText(it!!.data.name)
+            binding.etPhoneProf.setText(it!!.data.phoneNumber)
+        }
+    }
 
     fun updateProfile(){
         val name = binding.etNameProf.text.toString()

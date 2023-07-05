@@ -119,9 +119,17 @@ class HasilPencarianFragment : Fragment() {
         hmVm.livedatasearchallticket.observe(viewLifecycleOwner){
 
             binding.rvListItem.apply {
-                val searchAdapter = HasilPencarianAdapter(it)
                 layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
-                adapter = searchAdapter
+                searchAdapter = HasilPencarianAdapter(it) {itemTicket ->
+                    val id = itemTicket.id
+                    val bundle = Bundle()
+                    bundle.putInt("id",id)
+                    findNavController().navigate(R.id.action_hasilPencarianFragment_to_detailNonLoginFragment5, bundle)
+                }
+                adapter  = searchAdapter
+//                val searchAdapter = HasilPencarianAdapter(it)
+//                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+//                adapter = searchAdapter
             }
 
         }

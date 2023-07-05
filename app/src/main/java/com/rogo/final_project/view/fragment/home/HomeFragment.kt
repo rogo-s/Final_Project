@@ -34,6 +34,8 @@ class HomeFragment : Fragment() {
     private var tanggalPergi:String? = null
     private lateinit var pref : SharedPreferences
     private lateinit var homeViewModel: HomeViewModel
+    lateinit var roundtripPref: SharedPreferences
+    lateinit var passengerPref: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +49,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        roundtripPref = requireContext().getSharedPreferences("roundtrip", Context.MODE_PRIVATE)
+        passengerPref = requireContext().getSharedPreferences("data_penumpang", Context.MODE_PRIVATE)
 
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         homeViewModel.getFlights()
@@ -74,6 +78,11 @@ class HomeFragment : Fragment() {
 
 
         binding.etPassengers.setOnClickListener {
+            if (it != null) binding.etPassengers.text = "$it Penumpang"
+            val save = passengerPref.edit()
+            save.putString("passenger", it.toString())
+            save.apply()
+            Log.d("Home Frag", "$it penumpang")
             findNavController().navigate(R.id.action_homeFragment2_to_setPenempunganFragment)
         }
 
@@ -85,8 +94,10 @@ class HomeFragment : Fragment() {
             } else {
                 homeViewModel.saveselected(false)
                 binding.btnRound.visibility = View.GONE
-
             }
+            val save = roundtripPref.edit()
+            save.putBoolean("roundtrip_status", isChecked)
+            save.apply()
         }
 
         val getCheck = homeViewModel.getCheckedSwitch()

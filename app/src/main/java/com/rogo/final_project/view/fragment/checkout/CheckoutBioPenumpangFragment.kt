@@ -63,6 +63,8 @@ class CheckoutBioPenumpangFragment : Fragment() {
 
     fun dataPenumpang(){
         val ticketId = homeViewModel.getTicketId().toString()
+        val idDepature = homeViewModel.getIdDep().toString()
+        val idReturn = homeViewModel.getIdReturn().toString()
         val id = arguments?.getInt("id")
         val accessToken = sharedPref.getString("token", "").toString()
         val dewasa = homeViewModel.getPenumpangDewasa()
@@ -77,7 +79,7 @@ class CheckoutBioPenumpangFragment : Fragment() {
         val email = sharedPref.getString("email", "")
 //        val price = homeViewModel.getorder()!!.toInt()
         val dataCheckout = CreateCheckout(seat, email!!, nameFam, name,true, "data",
-            phoneNumber!!, 5950000, returnSeat, ticketId, total)
+            phoneNumber!!, 5950000, returnSeat, "$idDepature, $idReturn", total)
         checkoutViewModel.checkoutUser(accessToken, dataCheckout)
         checkoutViewModel.dataCheckout.observe(viewLifecycleOwner) {
             if (it != null) {
