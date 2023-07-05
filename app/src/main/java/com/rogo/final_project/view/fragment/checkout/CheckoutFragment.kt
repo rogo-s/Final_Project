@@ -25,7 +25,6 @@ class CheckoutFragment : Fragment() {
     private val homeViewModel : HomeViewModel by viewModels()
     lateinit var sharedPref : SharedPreferences
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -80,6 +80,7 @@ class CheckoutPenumpangFragment : Fragment() {
         checkoutViewModel.checkoutUser(accessToken, dataCheckout)
         checkoutViewModel.dataCheckout.observe(viewLifecycleOwner) {
             if (it != null) {
+
                 Toast.makeText(requireContext(), "Data Checkout Tersimpan", Toast.LENGTH_SHORT).show()
 //                val sPref = sharedPref.edit()
 //                sPref.putString("total", total!!.toInt())
@@ -90,5 +91,7 @@ class CheckoutPenumpangFragment : Fragment() {
                 Toast.makeText(requireContext(), "Data Checkout Tidak Tersimpan", Toast.LENGTH_SHORT).show()
             }
         }
+
+
     }
 }
