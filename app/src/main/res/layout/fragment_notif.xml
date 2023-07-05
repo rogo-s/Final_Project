@@ -7,6 +7,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.fragment.BottonNav.NotifFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/akunNonLogin"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvAkun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginStart="24dp"
+            android:text="@string/akun"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvHarusLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/maaf_anda_harus_login_terlebih_dahulu"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginTop="107dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintTop_toBottomOf="@id/tvAkun"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivNonLoginHistory"
+            android:layout_width="156dp"
+            android:layout_height="242dp"
+            android:src="@drawable/bg_nonlogin"
+            app:layout_constraintTop_toBottomOf="@id/tvHarusLogin"
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMasuk"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginEnd="23dp"
+            app:cornerRadius="16dp"
+            android:text="@string/masuk"
+            android:fontFamily="@font/poppins_regular"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/darkblue04"
+            app:layout_constraintTop_toBottomOf="@id/ivNonLoginHistory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/akunLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp"
+        android:visibility="visible">
+
     <TextView
         android:id="@+id/tv_notif"
         android:layout_width="wrap_content"
@@ -19,80 +86,79 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:backgroundTint="@color/white"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf = "@id/tv_notif" >
-
-        <RelativeLayout
-            android:id="@+id/detail"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf = "@id/tv_notif" >
 
-            <ImageView
-                android:id="@+id/imgnotif"
-                android:layout_width="30dp"
+            <RelativeLayout
+                android:id="@+id/detail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/notofication" />
+                android:layout_margin="10dp">
 
-            <TextView
-                android:id="@+id/tanggal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="139dp"
-                android:layout_toRightOf="@id/promo"
-                android:text="20 Maret, 14:04" />
+                <ImageView
+                    android:id="@+id/imgnotif"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/notofication" />
 
-            <ImageView
-                android:id="@+id/pointer"
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="7dp"
-                android:layout_toRightOf="@id/tanggal"
-                android:src="@drawable/point_hijau" />
+                <TextView
+                    android:id="@+id/tanggal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="139dp"
+                    android:layout_toRightOf="@id/promo"
+                    android:text="20 Maret, 14:04" />
 
-            <TextView
-                android:id="@+id/promo"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/imgnotif"
-                android:text="Promosi"
-                android:textSize="13sp" />
+                <ImageView
+                    android:id="@+id/pointer"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_toRightOf="@id/tanggal"
+                    android:src="@drawable/point_hijau" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/DetailPromo"
-                android:layout_width="329dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/promo"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="2dp"
-                android:layout_toRightOf="@+id/imgnotif"
-                android:text="Dapatkan Potongan 50% Tiket! "
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/promo"
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/imgnotif"
+                    android:text="Promosi"
+                    android:textSize="13sp" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/syaratketentuan"
-                android:layout_width="223dp"
-                android:layout_height="30dp"
-                android:layout_below="@+id/DetailPromo"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="2dp"
-                android:layout_toRightOf="@+id/imgnotif"
-                android:text="Syarat dan Ketentuan berlaku!"
-                android:textSize="13sp" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/DetailPromo"
+                    android:layout_width="329dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/promo"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toRightOf="@+id/imgnotif"
+                    android:text="Dapatkan Potongan 50% Tiket! "
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/syaratketentuan"
+                    android:layout_width="223dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/DetailPromo"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toRightOf="@+id/imgnotif"
+                    android:text="Syarat dan Ketentuan berlaku!"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -102,6 +168,5 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         tools:listitem="@layout/notification_item"/>
 
-
-
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

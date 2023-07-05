@@ -13,6 +13,7 @@ import com.rogo.final_project.view.model.data.otp.ResponseVerify
 import com.rogo.final_project.view.model.data.login.DataLogin
 import com.rogo.final_project.view.model.data.login.ResponseDataLogin
 import com.rogo.final_project.view.model.data.login.ResponseRefreshToken
+import com.rogo.final_project.view.model.data.notifikasi.ResponseGetNotif
 import com.rogo.final_project.view.model.data.profile.ResponseGetDataProfile
 import com.rogo.final_project.view.model.data.profile.ResponseProfileUpdate
 import com.rogo.final_project.view.model.data.profile.UpdateProfile
@@ -118,4 +119,9 @@ interface RestfulApi {
     fun getCheckouts(
         @Header("Authorization") accesToken: String
     ) : Call<ResponseGetCheckout>
+
+    @GET("notification")
+    fun getNotif(
+        @Header("Authorization") accesToken: String
+    ) : Call<ResponseGetNotif>
 }
