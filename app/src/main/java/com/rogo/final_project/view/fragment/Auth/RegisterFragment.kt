@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class RegisterFragment : Fragment() {
     lateinit var binding : FragmentRegisterBinding
     private lateinit var registerViewModel : UserViewModel
-    private lateinit var pref: SharedPreferences
+   lateinit var pref: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,6 +68,8 @@ class RegisterFragment : Fragment() {
 
         if (email.isEmpty() || name.isEmpty() || password.isEmpty() || phoneNumber.isEmpty()) {
             Toast.makeText(requireContext(), "Please fill all the field", Toast.LENGTH_SHORT).show()
+        } else if (password.length < 8) {
+            Toast.makeText(requireContext(), "Password minimal 8 karakter!", Toast.LENGTH_SHORT).show()
         } else {
             registerViewModel.registDataUser(DataRegist(email, name, password, phoneNumber))
             registerViewModel.usersRegist.observe(viewLifecycleOwner) {
@@ -78,6 +80,7 @@ class RegisterFragment : Fragment() {
                 sharedPref.putString("password", password)
                 sharedPref.apply()
                 findNavController().navigate(R.id.action_registerFragment_to_sendOtpFragment)
+                Toast.makeText(requireContext(), "Kode OTP telah dikirim!", Toast.LENGTH_SHORT).show()
             }
         }
     }

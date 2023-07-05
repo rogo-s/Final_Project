@@ -153,6 +153,10 @@ class HomeViewModel @Inject constructor(
         return sharedPreferences.getInt("idReturn",0)
     }
 
+    fun getTicketId(): Int?{
+        return sharedPreferences.getInt("TicketId", 0)
+    }
+
     fun getCityTo():String?{
         return sharedPreferences.getString("keyTo"," ")
     }
@@ -171,6 +175,12 @@ class HomeViewModel @Inject constructor(
     fun saveIdReturn(idReturn:Int){
         val editor = sharedPreferences.edit()
         editor.putInt("idReturn",idReturn)
+        editor.apply()
+    }
+
+    fun saveIdTicket(ticketId:Int){
+        val editor =  sharedPreferences.edit()
+        editor.putInt("TicketId",ticketId)
         editor.apply()
     }
 

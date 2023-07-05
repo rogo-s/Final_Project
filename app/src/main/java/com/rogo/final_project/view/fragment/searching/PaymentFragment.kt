@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rogo.final_project.R
+import com.rogo.final_project.databinding.FragmentPaymentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class PaymentFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    lateinit var binding : FragmentPaymentBinding
 
 
     override fun onCreateView(
@@ -19,7 +20,8 @@ class PaymentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_payment, container, false)
+        binding = FragmentPaymentBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
 }

@@ -176,6 +176,9 @@
         <action
             android:id="@+id/action_detailNonLoginFragment5_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_detailNonLoginFragment5_to_checkoutBioFragment"
+            app:destination="@id/checkoutBioFragment" />
     </fragment>
     <fragment
         android:id="@+id/pencarianFromFragment"
@@ -248,5 +251,65 @@
         android:id="@+id/detailRound"
         android:name="com.rogo.final_project.view.fragment.roundTrip.DetailRound"
         android:label="fragment_detail_round"
-        tools:layout="@layout/fragment_detail_round" />
+        tools:layout="@layout/fragment_detail_round" >
+        <action
+            android:id="@+id/action_detailRound_to_checkoutBioFragment"
+            app:destination="@id/checkoutBioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutBioFragment"
+        android:name="com.rogo.final_project.view.fragment.checkout.CheckoutBioFragment"
+        android:label="fragment_checkout_bio"
+        tools:layout="@layout/fragment_checkout_bio" >
+        <action
+            android:id="@+id/action_checkoutBioFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_checkoutBioFragment_to_checkoutPenumpangFragment"
+            app:destination="@id/checkoutPenumpangFragment" />
+        <action
+            android:id="@+id/action_checkoutBioFragment_to_checkoutBioPenumpangFragment"
+            app:destination="@id/checkoutBioPenumpangFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutBioPenumpangFragment"
+        android:name="com.rogo.final_project.view.fragment.checkout.CheckoutBioPenumpangFragment"
+        android:label="fragment_checkout_bio_penumpang"
+        tools:layout="@layout/fragment_checkout_bio_penumpang" >
+        <action
+            android:id="@+id/action_checkoutBioPenumpangFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.rogo.final_project.view.fragment.checkout.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout" >
+        <action
+            android:id="@+id/action_checkoutFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutPenumpangFragment"
+        android:name="com.rogo.final_project.view.fragment.checkout.CheckoutPenumpangFragment"
+        android:label="fragment_checkout_penumpang"
+        tools:layout="@layout/fragment_checkout_penumpang" >
+        <action
+            android:id="@+id/action_checkoutPenumpangFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/bottomSheetCheckoutFragment"
+        android:name="com.rogo.final_project.view.fragment.checkout.BottomSheetCheckoutFragment"
+        android:label="fragment_bottom_sheet_checkout"
+        tools:layout="@layout/fragment_bottom_sheet_checkout" >
+        <action
+            android:id="@+id/action_bottomSheetCheckoutFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.rogo.final_project.view.fragment.searching.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" />
 </navigation>

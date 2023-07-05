@@ -48,8 +48,6 @@ class SearchFromAdapter(private val context: Context, private val listairport : 
 
     }
 
-
-
     override fun getItemCount(): Int {
         return listairport.size
     }

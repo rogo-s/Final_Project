@@ -10,7 +10,9 @@ import com.rogo.final_project.view.model.data.otp.ResponseResendOtp
 import com.rogo.final_project.view.model.data.otp.ResponseVerify
 import com.rogo.final_project.view.model.data.login.DataLogin
 import com.rogo.final_project.view.model.data.login.ResponseDataLogin
+import com.rogo.final_project.view.model.data.login.ResponseRefreshToken
 import com.rogo.final_project.view.model.data.profile.ResponseGetDataProfile
+import com.rogo.final_project.view.model.data.profile.ResponseProfileUpdate
 import com.rogo.final_project.view.model.data.profile.UpdateProfile
 import com.rogo.final_project.view.model.data.register.DataRegist
 import com.rogo.final_project.view.model.data.register.ResponseDataRegist
@@ -30,6 +32,10 @@ class UserViewModel @Inject constructor( var api: RestfulApi) : ViewModel() {
     private val _usersLogin = MutableLiveData<ResponseDataLogin?>()
     val usersLogin: MutableLiveData<ResponseDataLogin?> = _usersLogin
 
+    //resetPassViewModel
+    private val _refresToken = MutableLiveData<ResponseRefreshToken?>()
+    val refreshToken: MutableLiveData<ResponseRefreshToken?> = _refresToken
+
     //RegistViewModel
     private val _usersRegist = MutableLiveData<ResponseDataRegist?>()
     val usersRegist: MutableLiveData<ResponseDataRegist?> = _usersRegist
@@ -47,8 +53,8 @@ class UserViewModel @Inject constructor( var api: RestfulApi) : ViewModel() {
 //    val usersLogout : MutableLiveData<ResponseLogout> = _usersLogout
 
     //updateViewModel
-    private val _profileUpdate = MutableLiveData<ResponseDataRegist?>()
-    val profileUpdate: MutableLiveData<ResponseDataRegist?> = _profileUpdate
+    private val _profileUpdate = MutableLiveData<ResponseProfileUpdate?>()
+    val profileUpdate: MutableLiveData<ResponseProfileUpdate?> = _profileUpdate
 
     //getProfileViewModel
     private val _usersGetProfile = MutableLiveData<ResponseGetDataProfile?>()
@@ -81,6 +87,25 @@ class UserViewModel @Inject constructor( var api: RestfulApi) : ViewModel() {
 
             override fun onFailure(call: Call<ResponseDataLogin>, t: Throwable) {
                 _usersLogin.postValue(null)
+            }
+        })
+    }
+
+    fun refreshTokenUser() {
+        api.refreshToken().enqueue(object : Callback<ResponseRefreshToken> {
+            override fun onResponse(
+                call: Call<ResponseRefreshToken>,
+                response: Response<ResponseRefreshToken>
+            ) {
+                if (response.isSuccessful) {
+                    _refresToken.postValue(response.body())
+                } else {
+                    _refresToken.postValue(null)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseRefreshToken>, t: Throwable) {
+                _refresToken.postValue(null)
             }
         })
     }
@@ -168,12 +193,48 @@ class UserViewModel @Inject constructor( var api: RestfulApi) : ViewModel() {
 //        })
 //    }
 
+//    fun updateDataProfile(accessToken: String, data: UpdateProfile) {
+//        api.refreshToken().enqueue(object : Callback<ResponseRefreshToken> {
+//            override fun onResponse(
+//                call: Call<ResponseRefreshToken>,
+//                response: Response<ResponseRefreshToken>
+//            ) {
+//                if (response.isSuccessful) {
+//                    val newAccessToken = response.body()?.accessToken ?: ""
+//                    api.updateProfile("Bearer $newAccessToken", data)
+//                        .enqueue(object : Callback<ResponseProfileUpdate> {
+//                            override fun onResponse(
+//                                call: Call<ResponseProfileUpdate>,
+//                                response: Response<ResponseProfileUpdate>
+//                            ) {
+//                                if (response.isSuccessful) {
+//                                    _profileUpdate.postValue(response.body())
+//                                } else {
+//                                    _profileUpdate.postValue(null)
+//                                }
+//                            }
+//
+//                            override fun onFailure(call: Call<ResponseProfileUpdate>, t: Throwable) {
+//                                _profileUpdate.postValue(null)
+//                            }
+//                        })
+//                } else {
+//                    _profileUpdate.postValue(null)
+//                }
+//            }
+
+//            override fun onFailure(call: Call<ResponseRefreshToken>, t: Throwable) {
+//                _profileUpdate.postValue(null)
+//            }
+//        })
+//    }
+
     fun updateDataProfile(accessToken: String, data: UpdateProfile) {
         api.updateProfile("Bearer $accessToken", data)
-            .enqueue(object : Callback<ResponseDataRegist> {
+            .enqueue(object : Callback<ResponseProfileUpdate> {
                 override fun onResponse(
-                    call: Call<ResponseDataRegist>,
-                    response: Response<ResponseDataRegist>
+                    call: Call<ResponseProfileUpdate>,
+                    response: Response<ResponseProfileUpdate>
                 ) {
                     if (response.isSuccessful) {
                         _profileUpdate.postValue(response.body())
@@ -182,7 +243,7 @@ class UserViewModel @Inject constructor( var api: RestfulApi) : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<ResponseDataRegist>, t: Throwable) {
+                override fun onFailure(call: Call<ResponseProfileUpdate>, t: Throwable) {
                     _profileUpdate.postValue(null)
                 }
             })

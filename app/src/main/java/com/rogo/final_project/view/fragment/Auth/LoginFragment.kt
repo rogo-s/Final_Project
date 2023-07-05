@@ -41,6 +41,7 @@ class LoginFragment : Fragment() {
 
         binding.btnLogin.setOnClickListener {
             doLogin()
+            refreshToken()
         }
 
         binding.btnSignup.setOnClickListener {
@@ -70,12 +71,17 @@ class LoginFragment : Fragment() {
                     Log.d("HomeFragment", "token: ${it.accessToken}")
                     sPref.apply()
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment2)
-                } else if (email != dataEmail) {
-                    Toast.makeText(requireContext(), "Email tidak terdaftar", Toast.LENGTH_SHORT).show()
-                } else if (password != dataPass) {
-                    Toast.makeText(requireContext(), "Maaf, kata sandi salah", Toast.LENGTH_SHORT).show()
+                } else {
+                    if (email == dataEmail && password != dataPass) {
+                        Toast.makeText(requireContext(), "Maaf, kata sandi salah", Toast.LENGTH_SHORT).show()
+                    } else if (email != dataEmail) {
+                        Toast.makeText(requireContext(), "Email tidak terdaftar", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
+    }
+
+    fun refreshToken(){
     }
 }

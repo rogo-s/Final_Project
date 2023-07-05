@@ -1,6 +1,9 @@
 package com.rogo.final_project.network
 
 import com.rogo.final_project.view.model.data.*
+import com.rogo.final_project.view.model.data.checkout.CreateCheckout
+import com.rogo.final_project.view.model.data.checkout.ResponseCreateCheckout
+import com.rogo.final_project.view.model.data.checkout.ResponseGetCheckout
 import com.rogo.final_project.view.model.data.detail.TiketsDetailResponse
 import com.rogo.final_project.view.model.data.flight.GetFlightResponse
 import com.rogo.final_project.view.model.data.otp.DataOtp
@@ -9,7 +12,9 @@ import com.rogo.final_project.view.model.data.otp.ResponseResendOtp
 import com.rogo.final_project.view.model.data.otp.ResponseVerify
 import com.rogo.final_project.view.model.data.login.DataLogin
 import com.rogo.final_project.view.model.data.login.ResponseDataLogin
+import com.rogo.final_project.view.model.data.login.ResponseRefreshToken
 import com.rogo.final_project.view.model.data.profile.ResponseGetDataProfile
+import com.rogo.final_project.view.model.data.profile.ResponseProfileUpdate
 import com.rogo.final_project.view.model.data.profile.UpdateProfile
 import com.rogo.final_project.view.model.data.register.DataRegist
 import com.rogo.final_project.view.model.data.register.ResponseDataRegist
@@ -32,6 +37,10 @@ interface RestfulApi {
         @Body data: DataLogin
     ): Call<ResponseDataLogin>
 
+    @GET("token")
+    fun refreshToken(
+    ): Call<ResponseRefreshToken>
+
     @POST("verify")
     fun otpUser(
         @Body data: DataOtp
@@ -42,16 +51,11 @@ interface RestfulApi {
         @Body data: DataResendOtp
     ): Call<ResponseResendOtp>
 
-//    @DELETE("logout")
-//    fun deleteUser(
-//        @Body
-//    )
-
     @PUT("profile/update")
     fun updateProfile(
         @Header("Authorization") accessToken: String,
         @Body data: UpdateProfile
-    ): Call<ResponseDataRegist>
+    ): Call<ResponseProfileUpdate>
 
     @GET("profile")
     fun dataProfile(
@@ -103,4 +107,15 @@ interface RestfulApi {
     fun getAllCity(
         @Query ("departureCity") City:String
     ) : Call<GetTicketResponse>
+
+    @POST("checkout")
+    fun checkout(
+        @Header("Authorization") accessToken: String,
+        @Body dataCheckout : CreateCheckout
+    ) : Call<ResponseCreateCheckout>
+
+    @GET("checkouts")
+    fun getCheckouts(
+        @Header("Authorization") accesToken: String
+    ) : Call<ResponseGetCheckout>
 }

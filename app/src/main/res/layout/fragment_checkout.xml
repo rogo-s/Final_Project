@@ -44,9 +44,16 @@
         </RelativeLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
+    <LinearLayout
         android:id="@+id/txtDestinasi"
-        android:text="Jakarta -> Melbourne"
+        android:orientation="horizontal"
+        android:layout_below="@id/appBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txtAsal"
+        android:text="Jakarta"
         android:textColor="#4B1979"
         android:fontFamily="@font/poppins_bold"
         android:layout_marginTop="10dp"
@@ -55,6 +62,26 @@
         android:layout_below="@+id/appBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/imgpanah"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_panah_foreground" />
+        <TextView
+            android:id="@+id/txtTujuan"
+            android:text="Melbourne"
+            android:textColor="#4B1979"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="5dp"
+            android:layout_below="@+id/appBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <TextView
         android:text="(4h 0m)"
@@ -85,6 +112,7 @@
                 android:layout_height="fill_parent">
 
                 <TextView
+                    android:id="@+id/keberangkatan"
                     android:text="07:00"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_bold"
@@ -105,12 +133,14 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tglKeberangkatan"
                 android:text="3 Maret 2023"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/keberangkatanAirport"
                 android:text="Soekarno Hatta - Terminal 1A Domestik"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_medium"
@@ -129,6 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/kelasSeat"
                 android:text="Jet Air - Economy"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_bold"
@@ -149,6 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/bagasi"
                 android:text="Baggage 20 kg"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -193,6 +225,7 @@
                 android:layout_height="fill_parent">
 
                 <TextView
+                    android:id="@+id/kedatangan"
                     android:text="11:00"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_bold"
@@ -213,12 +246,14 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tglKedatangan"
                 android:text="3 Maret 2023"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/kedatanganAirport"
                 android:text="Melbourne International Airport"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_medium"
@@ -268,6 +303,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/price"
             android:text="IDR 9.550.000"
             android:textColor="@color/black"
             android:layout_width="wrap_content"

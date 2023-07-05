@@ -75,6 +75,7 @@ class AkunNonLoginFragment : Fragment() {
     private fun isLogin() {
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         Log.d("Berhasil", sharedPref.getString("token", " ").toString())
+        Log.d("Berhasil", sharedPref.getString("refreshToken", " ").toString())
         if (sharedPref.getString("token", "").toString().isNotEmpty()) {
             binding.akunLogin.visibility = View.VISIBLE
             Log.d("Berhasil Login", "berhasil")
@@ -90,6 +91,7 @@ class AkunNonLoginFragment : Fragment() {
         val logoutUser = sharedPref.edit()
         logoutUser.clear()
         logoutUser.apply()
+        Log.d("DataToken", sharedPref.getString("token", "").toString())
         findNavController().navigate(R.id.action_akunNonLoginFragment2_to_homeFragment2)
     }
 

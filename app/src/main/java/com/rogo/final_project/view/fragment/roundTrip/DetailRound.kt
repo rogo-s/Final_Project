@@ -26,7 +26,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailRound : Fragment() {
     lateinit var binding: FragmentDetailRoundBinding
     lateinit var DetailVm : DetailViewModel
-    lateinit var pref : SharedPreferences
+    private val homeViewModel : HomeViewModel by viewModels()
+    lateinit var sharedPref : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +40,7 @@ class DetailRound : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pref = requireContext().getSharedPreferences("login_data", Context.MODE_PRIVATE)
+        sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
         val id = arguments?.getInt("id")
         val hargaPergi = arguments?.getInt("hargaPergi")
         val hargaPulang = arguments?.getInt("hargaPulang")
@@ -60,7 +61,20 @@ class DetailRound : Fragment() {
         val priceTotal = hargaPergi?.plus(hargaPulang!!)
         binding.txtHargaTotal.text = Utill.getPriceIdFormat(priceTotal!!)
 
+        binding.btnPilih.setOnClickListener {
+            homeViewModel.saveIdTicket(id!!)
+            if (sharedPref.getString("token", "").toString().isNotEmpty()) {
+                if (findNavController().currentDestination!!.id == R.id.detailRound) {
 
+                    findNavController().navigate(R.id.action_detailRound_to_checkoutBioFragment)
+                }
+
+            } else {
+                val fragId = findNavController().currentDestination?.id
+                findNavController().popBackStack(fragId!!, true)
+                findNavController().navigate(R.id.bottomSheetCheckoutFragment)
+            }
+        }
     }
 
     companion object{

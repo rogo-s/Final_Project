@@ -65,18 +65,7 @@ class ResetPasswordFragment : Fragment() {
                 }
             }
         } else {
-            Toast.makeText(requireContext(), "Password harus memiliki setidaknya 8 karakter.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Password minimal 8 karakter!", Toast.LENGTH_SHORT).show()
         }
     }
-
-//        if (confirm.isEmpty() || password.isEmpty() || rePassword.isEmpty()) {
-//            Toast.makeText(requireContext(), "Please fill all the field", Toast.LENGTH_SHORT).show()
-//        } else {
-//            resetPassViewModel.resetPassword(ResetPass(rePassword, password, confirm))
-//            resetPassViewModel.resetPass.observe(viewLifecycleOwner){
-//                if (it != null) {
-//                    findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
-//                }
-//            }
-//        }
 }

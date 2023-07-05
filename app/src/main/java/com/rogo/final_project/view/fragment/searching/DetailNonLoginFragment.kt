@@ -1,22 +1,28 @@
 package com.rogo.final_project.view.fragment.searching
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentDetailNonLoginBinding
 import com.rogo.final_project.viewmodel.DetailViewModel
+import com.rogo.final_project.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailNonLoginFragment : Fragment() {
     private lateinit var binding : FragmentDetailNonLoginBinding
     private lateinit var DetailVm : DetailViewModel
+    private val homeViewModel : HomeViewModel by viewModels()
+    private lateinit var sharedPref : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +35,8 @@ class DetailNonLoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
+
         DetailVm = ViewModelProvider(this).get(DetailViewModel::class.java)
 
         val id = arguments?.getInt("id")
@@ -36,7 +44,19 @@ class DetailNonLoginFragment : Fragment() {
         DetailVm.getdetailticket(id!!)
 
         binding.btnSelectFlight.setOnClickListener {
-            findNavController().navigate(R.id.action_detailNonLoginFragment5_to_loginFragment)
+            homeViewModel.saveIdTicket(id!!)
+            if (sharedPref.getString("token", "").toString().isNotEmpty()) {
+                if (findNavController().currentDestination!!.id == R.id.detailNonLoginFragment5) {
+
+                    findNavController().navigate(R.id.action_detailNonLoginFragment5_to_checkoutBioFragment)
+                }
+
+            } else {
+                val fragId = findNavController().currentDestination?.id
+                findNavController().popBackStack(fragId!!, true)
+                findNavController().navigate(R.id.bottomSheetCheckoutFragment)
+            }
+
         }
 
         binding.btnBack.setOnClickListener {

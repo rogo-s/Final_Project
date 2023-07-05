@@ -14,7 +14,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(var api : RestfulApi) : ViewModel(){
+class   DetailViewModel @Inject constructor(var api : RestfulApi) : ViewModel(){
 
     val _detail : MutableLiveData<TiketsDetailResponse> = MutableLiveData()
 

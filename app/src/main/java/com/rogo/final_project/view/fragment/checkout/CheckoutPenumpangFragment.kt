@@ -7,23 +7,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
-import com.rogo.final_project.databinding.FragmentCheckoutBioPenumpangBinding
 import com.rogo.final_project.databinding.FragmentCheckoutPenumpangBinding
 import com.rogo.final_project.view.model.data.checkout.CreateCheckout
 import com.rogo.final_project.viewmodel.CheckoutViewModel
 import com.rogo.final_project.viewmodel.HomeViewModel
+import com.rogo.final_project.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class CheckoutBioPenumpangFragment : Fragment() {
 
-    lateinit var binding : FragmentCheckoutBioPenumpangBinding
+@AndroidEntryPoint
+class CheckoutPenumpangFragment : Fragment() {
+
+    lateinit var binding : FragmentCheckoutPenumpangBinding
     lateinit var sharedPref : SharedPreferences
     private lateinit var checkoutViewModel : CheckoutViewModel
     private val homeViewModel : HomeViewModel by viewModels()
@@ -33,7 +33,7 @@ class CheckoutBioPenumpangFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentCheckoutBioPenumpangBinding.inflate(layoutInflater, container, false)
+        binding = FragmentCheckoutPenumpangBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -73,11 +73,10 @@ class CheckoutBioPenumpangFragment : Fragment() {
         val nameFam = binding.etNameFam.text.toString()
         val phoneNumber = sharedPref.getString("telephone", "")
         val seat = binding.etSeat.text.toString()
-        val returnSeat = binding.etSeat.text.toString()
         val email = sharedPref.getString("email", "")
 //        val price = homeViewModel.getorder()!!.toInt()
-        val dataCheckout = CreateCheckout(seat, email!!, nameFam, name,true, "data",
-            phoneNumber!!, 5950000, returnSeat, ticketId, total)
+        val dataCheckout = CreateCheckout(seat, email!!, nameFam, name,false, "data",
+            phoneNumber!!, 5950000, " ", ticketId, total)
         checkoutViewModel.checkoutUser(accessToken, dataCheckout)
         checkoutViewModel.dataCheckout.observe(viewLifecycleOwner) {
             if (it != null) {
@@ -86,7 +85,7 @@ class CheckoutBioPenumpangFragment : Fragment() {
 //                sPref.putString("total", total!!.toInt())
 //                sPref.putString("telephone", phoneNumber)
 //                sPref.apply()
-                findNavController().navigate(R.id.action_checkoutBioPenumpangFragment_to_checkoutFragment)
+                findNavController().navigate(R.id.action_checkoutPenumpangFragment_to_checkoutFragment)
             } else {
                 Toast.makeText(requireContext(), "Data Checkout Tidak Tersimpan", Toast.LENGTH_SHORT).show()
             }

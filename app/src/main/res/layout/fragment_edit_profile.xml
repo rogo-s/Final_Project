@@ -23,31 +23,31 @@
         android:orientation="vertical"
         android:layout_marginTop="24dp"
         android:layout_below="@+id/txtProfile">
-        <TextView
-            android:text="Email"
-            android:textColor="@color/black"
-            android:layout_marginBottom="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldProf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:layout_marginBottom="16dp"
-            app:boxCornerRadiusTopStart="16dp"
-            app:boxCornerRadiusTopEnd="16dp"
-            app:boxCornerRadiusBottomStart="16dp"
-            app:boxCornerRadiusBottomEnd="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmailProf"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        <TextView-->
+<!--            android:text="Email"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_marginBottom="4dp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/textFieldProf"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Email"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            app:boxCornerRadiusTopStart="16dp"-->
+<!--            app:boxCornerRadiusTopEnd="16dp"-->
+<!--            app:boxCornerRadiusBottomStart="16dp"-->
+<!--            app:boxCornerRadiusBottomEnd="16dp"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!---->
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/etEmailProf"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inputType="textEmailAddress"-->
+<!--                />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <TextView
             android:text="Nama"
