@@ -38,11 +38,6 @@ class EditProfileFragment : Fragment() {
 
         sharedPref = requireContext().getSharedPreferences("dataUser", Context.MODE_PRIVATE)
 
-//        val getName = sharedPref.getString("name", "")
-//        val getPhone = sharedPref.getString("telephone", "")
-//        binding.etNameProf.setText(getName)
-//        binding.etPhoneProf.setText(getPhone)
-
         getdataProfile()
 
         binding.btnUpdate.setOnClickListener{
@@ -55,7 +50,6 @@ class EditProfileFragment : Fragment() {
         val accessToken = sharedPref.getString("token", "").toString()
         profileViewModel.getDataProfile(accessToken)
         profileViewModel.usersGetProfile.observe(viewLifecycleOwner) {
-//            binding.etEmailProf.setText(it!!.data.email)
             binding.etNameProf.setText(it!!.data.name)
             binding.etPhoneProf.setText(it!!.data.phoneNumber)
         }

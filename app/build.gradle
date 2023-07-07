@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.rogo.final_project"
-        minSdk 25
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -69,4 +69,8 @@ dependencies {
     implementation 'io.github.architshah248.calendar:awesome-calendar:2.0.0'
 
     implementation 'androidx.datastore:datastore-preferences:1.0.0'
+
+    //testing
+    implementation "io.mockk:mockk:1.11.0"
+    androidTestImplementation 'io.mockk:mockk-android:1.11.0'
 }

@@ -58,7 +58,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_marginTop="458dp"
+        android:layout_marginTop="520dp"
         android:layout_marginLeft="16dp"
 
         android:layout_width="wrap_content"
@@ -79,8 +79,8 @@
     <LinearLayout
         android:id="@+id/txtHarga"
         android:orientation="vertical"
-        android:layout_marginTop="485dp"
-        android:layout_marginLeft="294dp"
+        android:layout_marginTop="543dp"
+        android:layout_marginLeft="300dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
@@ -92,12 +92,12 @@
     </LinearLayout>
 
     <View
-        android:background="@color/neutral02"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="14dp"
-        android:layout_below="@id/txtHarga"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"
+        android:layout_below="@id/txtHarga"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/neutral02" />
 
     <LinearLayout
         android:orientation="horizontal"

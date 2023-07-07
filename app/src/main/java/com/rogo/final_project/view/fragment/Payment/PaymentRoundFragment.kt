@@ -1,4 +1,4 @@
-package com.rogo.final_project.view.fragment.searching
+package com.rogo.final_project.view.fragment.Payment
 
 import android.os.Bundle
 import android.transition.AutoTransition
@@ -9,14 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
-import com.rogo.final_project.databinding.FragmentPaymentBinding
+import com.rogo.final_project.databinding.FragmentPaymentRoundBinding
 import com.rogo.final_project.view.fragment.checkout.BottomsheetPayment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PaymentFragment : Fragment() {
+class PaymentRoundFragment : Fragment() {
 
-    lateinit var binding : FragmentPaymentBinding
+    lateinit var binding : FragmentPaymentRoundBinding
 
 
     override fun onCreateView(
@@ -24,7 +24,7 @@ class PaymentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentPaymentBinding.inflate(layoutInflater, container, false)
+        binding = FragmentPaymentRoundBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -61,10 +61,12 @@ class PaymentFragment : Fragment() {
             }
 
             btnBayarGopay.setOnClickListener {
-                BottomsheetPayment().show(requireActivity().supportFragmentManager,BottomsheetPayment.bottomTag)
+                BottomsheetPayment().show(requireActivity().supportFragmentManager,
+                    BottomsheetPayment.bottomTag)
             }
             btnBayarCreditCard.setOnClickListener {
-                BottomsheetPayment().show(requireActivity().supportFragmentManager,BottomsheetPayment.bottomTag)
+                BottomsheetPayment().show(requireActivity().supportFragmentManager,
+                    BottomsheetPayment.bottomTag)
             }
 
             topAppBar.setNavigationOnClickListener {
@@ -72,6 +74,4 @@ class PaymentFragment : Fragment() {
             }
         }
     }
-
-
 }

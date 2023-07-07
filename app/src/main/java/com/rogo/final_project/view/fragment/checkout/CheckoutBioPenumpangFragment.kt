@@ -47,9 +47,6 @@ class CheckoutBioPenumpangFragment : Fragment() {
         binding.btnSave.setOnClickListener {
             dataPenumpang()
         }
-//        val title = resources.getStringArray(R.array.title)
-//        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, title)
-//        binding.auto.setAdapter(arrayAdapter)
         binding.btnSwitch.setOnCheckedChangeListener{ p0, isChecked ->
             if (isChecked){
                 binding.txtNameFam.visibility = View.VISIBLE
@@ -62,10 +59,8 @@ class CheckoutBioPenumpangFragment : Fragment() {
     }
 
     fun dataPenumpang(){
-        val ticketId = homeViewModel.getTicketId().toString()
         val idDepature = homeViewModel.getIdDep().toString()
         val idReturn = homeViewModel.getIdReturn().toString()
-        val id = arguments?.getInt("id")
         val accessToken = sharedPref.getString("token", "").toString()
         val dewasa = homeViewModel.getPenumpangDewasa()
         val anak = homeViewModel.getPenumpangAnak()
@@ -77,20 +72,19 @@ class CheckoutBioPenumpangFragment : Fragment() {
         val seat = binding.etSeat.text.toString()
         val returnSeat = binding.etSeat.text.toString()
         val email = sharedPref.getString("email", "")
-//        val price = homeViewModel.getorder()!!.toInt()
-        val dataCheckout = CreateCheckout(seat, email!!, nameFam, name,true, "data",
-            phoneNumber!!, 5950000, returnSeat, "$idDepature, $idReturn", total)
-        checkoutViewModel.checkoutUser(accessToken, dataCheckout)
-        checkoutViewModel.dataCheckout.observe(viewLifecycleOwner) {
-            if (it != null) {
-                Toast.makeText(requireContext(), "Data Checkout Tersimpan", Toast.LENGTH_SHORT).show()
-//                val sPref = sharedPref.edit()
-//                sPref.putString("total", total!!.toInt())
-//                sPref.putString("telephone", phoneNumber)
-//                sPref.apply()
-                findNavController().navigate(R.id.action_checkoutBioPenumpangFragment_to_checkoutRoundFragment)
-            } else {
-                Toast.makeText(requireContext(), "Data Checkout Tidak Tersimpan", Toast.LENGTH_SHORT).show()
+        if (seat.isEmpty() || nameFam.isEmpty() || name.isEmpty() || returnSeat.isEmpty()) {
+            Toast.makeText(requireContext(), "Mohon Lengkapi Data!", Toast.LENGTH_SHORT).show()
+        } else {
+            val dataCheckout = CreateCheckout(seat, email!!, nameFam, name,true, "data",
+                phoneNumber!!, 5950000, returnSeat, "$idDepature, $idReturn", total)
+            checkoutViewModel.checkoutUser(accessToken, dataCheckout)
+            checkoutViewModel.dataCheckout.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    Toast.makeText(requireContext(), "Data Checkout Tersimpan", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_checkoutBioPenumpangFragment_to_checkoutRoundFragment)
+                } else {
+                    Toast.makeText(requireContext(), "Data Checkout Tidak Tersimpan", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

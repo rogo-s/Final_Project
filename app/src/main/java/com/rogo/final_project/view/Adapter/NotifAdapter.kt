@@ -8,10 +8,14 @@ import com.rogo.final_project.databinding.NotificationItemBinding
 import com.rogo.final_project.view.Adapter.HasilPencarianAdapter
 import com.rogo.final_project.view.Adapter.HomeAdapter
 import com.rogo.final_project.view.model.data.notifikasi.Data
+import com.rogo.final_project.view.model.data.notifikasi.ResponseGetNotif
 
 
-class NotifAdapter(val listairport : List<Data>) : RecyclerView.Adapter<NotifAdapter.ViewHolder>() {
+class NotifAdapter(private var listNotif : List<Data>) : RecyclerView.Adapter<NotifAdapter.ViewHolder>() {
 
+    fun setDataNotif(notif : List<Data>){
+        this.listNotif = notif
+    }
     class ViewHolder(val binding : NotificationItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -22,13 +26,13 @@ class NotifAdapter(val listairport : List<Data>) : RecyclerView.Adapter<NotifAda
     }
 
     override fun onBindViewHolder(holder: NotifAdapter.ViewHolder, position: Int) {
-        holder.binding.Tittle.text = listairport[position].title
-        holder.binding.DetailNotif.text = listairport[position].text
-        holder.binding.tgl.text = listairport[position].createdAt
+        holder.binding.Tittle.text = listNotif[position].title
+        holder.binding.DetailNotif.text = listNotif[position].text
+        holder.binding.tgl.text = listNotif[position].createdAt
 
     }
 
     override fun getItemCount(): Int {
-        return listairport.size
+        return listNotif.size
     }
 }

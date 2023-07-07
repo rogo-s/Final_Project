@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.DestinasiItemBinding
-import com.rogo.final_project.view.model.data.DestinasiItem
 import com.rogo.final_project.view.model.data.flight.Flight
-import com.rogo.final_project.view.model.data.ticket.Ticket
 
 class HomeAdapter() : RecyclerView.Adapter<HomeAdapter.ItemViewHolder>() {
 

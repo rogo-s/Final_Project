@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentCheckoutBioBinding
 import com.rogo.final_project.view.model.data.profile.UpdateProfile
+import com.rogo.final_project.view.model.data.register.DataRegist
 import com.rogo.final_project.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -73,16 +74,20 @@ class CheckoutBioFragment : Fragment() {
         val name = binding.etName.text.toString()
         val phoneNumber = binding.etPhoneCheck.text.toString()
         val accessToken = sharedPref.getString("token", "").toString()
-        val dataProfile = UpdateProfile(name, phoneNumber)
-        bioPemesanViewModel.updateDataProfile(accessToken, dataProfile)
-        bioPemesanViewModel.profileUpdate.observe(viewLifecycleOwner){
-            if (it != null) {
-                Toast.makeText(requireContext(), "Simpan Data Pemesanan Berhasil", Toast.LENGTH_SHORT).show()
-                val sPref = sharedPref.edit()
-                sPref.putString("name", name)
-                sPref.putString("telephone", phoneNumber)
-                sPref.apply()
-                findNavController().navigate(R.id.action_checkoutBioFragment_to_checkoutPenumpangFragment)
+        if (name.isEmpty() || phoneNumber.isEmpty()) {
+            Toast.makeText(requireContext(), "Mohon Lengkapi Data!", Toast.LENGTH_SHORT).show()
+        } else {
+            val dataProfile = UpdateProfile(name, phoneNumber)
+            bioPemesanViewModel.updateDataProfile(accessToken, dataProfile)
+            bioPemesanViewModel.profileUpdate.observe(viewLifecycleOwner){
+                if (it != null) {
+                    Toast.makeText(requireContext(), "Simpan Data Pemesanan Berhasil", Toast.LENGTH_SHORT).show()
+                    val sPref = sharedPref.edit()
+                    sPref.putString("name", name)
+                    sPref.putString("telephone", phoneNumber)
+                    sPref.apply()
+                    findNavController().navigate(R.id.action_checkoutBioFragment_to_checkoutPenumpangFragment)
+                }
             }
         }
     }
@@ -91,16 +96,20 @@ class CheckoutBioFragment : Fragment() {
         val name = binding.etName.text.toString()
         val phoneNumber = binding.etPhoneCheck.text.toString()
         val accessToken = sharedPref.getString("token", "").toString()
-        val dataProfile = UpdateProfile(name, phoneNumber)
-        bioPemesanViewModel.updateDataProfile(accessToken, dataProfile)
-        bioPemesanViewModel.profileUpdate.observe(viewLifecycleOwner){
-            if (it != null) {
-                Toast.makeText(requireContext(), "Simpan Data Pemesanan Berhasil", Toast.LENGTH_SHORT).show()
-                val sPref = sharedPref.edit()
-                sPref.putString("name", name)
-                sPref.putString("telephone", phoneNumber)
-                sPref.apply()
-                findNavController().navigate(R.id.action_checkoutBioFragment_to_checkoutBioPenumpangFragment)
+        if (name.isEmpty() || phoneNumber.isEmpty()) {
+            Toast.makeText(requireContext(), "Mohon Lengkapi Data!", Toast.LENGTH_SHORT).show()
+        } else {
+            val dataProfile = UpdateProfile(name, phoneNumber)
+            bioPemesanViewModel.updateDataProfile(accessToken, dataProfile)
+            bioPemesanViewModel.profileUpdate.observe(viewLifecycleOwner){
+                if (it != null) {
+                    Toast.makeText(requireContext(), "Simpan Data Pemesanan Berhasil", Toast.LENGTH_SHORT).show()
+                    val sPref = sharedPref.edit()
+                    sPref.putString("name", name)
+                    sPref.putString("telephone", phoneNumber)
+                    sPref.apply()
+                    findNavController().navigate(R.id.action_checkoutBioFragment_to_checkoutBioPenumpangFragment)
+                }
             }
         }
     }

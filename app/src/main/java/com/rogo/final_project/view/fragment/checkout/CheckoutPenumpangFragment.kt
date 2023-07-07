@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentCheckoutPenumpangBinding
 import com.rogo.final_project.view.model.data.checkout.CreateCheckout
+import com.rogo.final_project.view.model.data.profile.UpdateProfile
 import com.rogo.final_project.viewmodel.CheckoutViewModel
 import com.rogo.final_project.viewmodel.HomeViewModel
 import com.rogo.final_project.viewmodel.UserViewModel
@@ -63,7 +64,6 @@ class CheckoutPenumpangFragment : Fragment() {
 
     fun dataPenumpang(){
         val ticketId = homeViewModel.getTicketId().toString()
-        val id = arguments?.getInt("id")
         val accessToken = sharedPref.getString("token", "").toString()
         val dewasa = homeViewModel.getPenumpangDewasa()
         val anak = homeViewModel.getPenumpangAnak()
@@ -74,24 +74,20 @@ class CheckoutPenumpangFragment : Fragment() {
         val phoneNumber = sharedPref.getString("telephone", "")
         val seat = binding.etSeat.text.toString()
         val email = sharedPref.getString("email", "")
-//        val price = homeViewModel.getorder()!!.toInt()
-        val dataCheckout = CreateCheckout(seat, email!!, nameFam, name,false, "data",
-            phoneNumber!!, 5950000, " ", ticketId, total)
-        checkoutViewModel.checkoutUser(accessToken, dataCheckout)
-        checkoutViewModel.dataCheckout.observe(viewLifecycleOwner) {
-            if (it != null) {
-
-                Toast.makeText(requireContext(), "Data Checkout Tersimpan", Toast.LENGTH_SHORT).show()
-//                val sPref = sharedPref.edit()
-//                sPref.putString("total", total!!.toInt())
-//                sPref.putString("telephone", phoneNumber)
-//                sPref.apply()
-                findNavController().navigate(R.id.action_checkoutPenumpangFragment_to_checkoutFragment)
-            } else {
-                Toast.makeText(requireContext(), "Data Checkout Tidak Tersimpan", Toast.LENGTH_SHORT).show()
+        if (seat.isEmpty() || nameFam.isEmpty() || name.isEmpty()) {
+            Toast.makeText(requireContext(), "Mohon Lengkapi Data!", Toast.LENGTH_SHORT).show()
+        } else {
+            val dataCheckout = CreateCheckout(seat, email!!, nameFam, name,false, "data",
+                phoneNumber!!, 5950000, " ", ticketId, total)
+            checkoutViewModel.checkoutUser(accessToken, dataCheckout)
+            checkoutViewModel.dataCheckout.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    Toast.makeText(requireContext(), "Data Checkout Tersimpan", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_checkoutPenumpangFragment_to_checkoutFragment)
+                } else {
+                    Toast.makeText(requireContext(), "Data Checkout Tidak Tersimpan", Toast.LENGTH_SHORT).show()
+                }
             }
         }
-
-
     }
 }

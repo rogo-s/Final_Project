@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rogo.final_project.R
 import com.rogo.final_project.databinding.FragmentNotifBinding
+import com.rogo.final_project.view.adapter.NotifAdapter
 import com.rogo.final_project.viewmodel.NotifikasiViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +24,7 @@ class NotifFragment : Fragment() {
 
     lateinit var binding : FragmentNotifBinding
     lateinit var sharedPref: SharedPreferences
-//    private lateinit var notifAdapter: NotifAdapter
+    private lateinit var notifAdapter: NotifAdapter
     lateinit var notifVM : NotifikasiViewModel
 
     override fun onCreateView(
@@ -39,9 +40,10 @@ class NotifFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         login()
 
+        notifVM = ViewModelProvider(this).get(NotifikasiViewModel::class.java)
+
 //        notifAdapter = NotifAdapter(ArrayList())
 //
-//        notifVM = ViewModelProvider(this).get(NotifikasiViewModel::class.java)
 
     }
 
@@ -59,7 +61,7 @@ class NotifFragment : Fragment() {
         Log.d("Berhasil", sharedPref.getString("refreshToken", " ").toString())
         if (sharedPref.getString("token", "").toString().isNotEmpty()) {
             binding.akunLogin.visibility = View.VISIBLE
-//            getDataNotif()
+            getDataNotif()
             Log.d("Berhasil Login", "berhasil")
             binding.akunNonLogin.visibility = View.GONE
 
@@ -69,19 +71,22 @@ class NotifFragment : Fragment() {
         }
     }
 
-//    fun getDataNotif(){
-//        val token = sharedPref.getString("token", "").toString()
-//        notifVM.getNotif(token)
-//        Log.d("historytoken", token)
-//        notifVM.getNotifikasi.observe(viewLifecycleOwner){
-//            binding.rvNotif.apply {
-//                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
-//                adapter = notifAdapter
-//            }
-//
-//        }
-//
-//    }
+    fun getDataNotif(){
+        val token = sharedPref.getString("token", "").toString()
+        notifVM.getNotif(token)
+        Log.d("historytoken", token)
+        notifVM = ViewModelProvider(this).get(NotifikasiViewModel::class.java)
+        notifAdapter = NotifAdapter(emptyList())
+        val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+        binding.rvNotif.layoutManager = layoutManager
+        binding.rvNotif.adapter = notifAdapter
+        notifVM.getNotifikasi.observe(viewLifecycleOwner) {
+            if (it != null) {
+                notifAdapter.setDataNotif(it.data)
+                notifAdapter.notifyDataSetChanged()
+            }
+        }
+    }
 
     override fun onResume() {
         super.onResume()

@@ -316,7 +316,7 @@
     </dialog>
     <fragment
         android:id="@+id/paymentFragment"
-        android:name="com.rogo.final_project.view.fragment.searching.PaymentFragment"
+        android:name="com.rogo.final_project.view.fragment.Payment.PaymentFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" />
     <fragment

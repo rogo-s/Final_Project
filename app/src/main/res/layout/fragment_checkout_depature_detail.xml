@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="50dp"
     tools:context=".view.fragment.checkout.CheckoutDepatureDetail">
 
     <androidx.cardview.widget.CardView
@@ -178,11 +179,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="700000"
-                android:textSize="20sp"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="#E91E63"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/darkblue05"
                 android:layout_below="@id/tvBandaraDatang"/>
-
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvKeberangkatan"
