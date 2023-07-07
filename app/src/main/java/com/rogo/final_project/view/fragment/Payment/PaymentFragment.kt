@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.transition.AutoTransition
 import android.transition.TransitionManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -44,13 +45,14 @@ class PaymentFragment : Fragment() {
 
         DetailVm = ViewModelProvider(this).get(DetailViewModel::class.java)
 
-        val idSingle = homeViewModel.getTicketId()
-        DetailVm.getdetailticket(idSingle!!)
+//        val idSingle = homeViewModel.getTicketId()
+//        DetailVm.getdetailticket(idSingle!!)
 
-        homeViewModel.saveIdTicket(id!!)
+        val idDeparture = homeViewModel.getIdDep()
+        DetailVm.getdetailticket(idDeparture!!)
 
         DetailVm.livedetailticket.observe(viewLifecycleOwner) { detail ->
-
+//            homeViewModel.saveIdTicket(id!!)
             binding.apply {
                 val departureTime = detail!!.ticket.flight.departureTime
                 val arrivalTime = detail.ticket.flight.arrivalTime
