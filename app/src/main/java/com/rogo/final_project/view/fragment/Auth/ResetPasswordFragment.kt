@@ -45,12 +45,11 @@ class ResetPasswordFragment : Fragment() {
 
     fun resetPass() {
         resetPassViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        val email = sharedPref.getString("email", "")
         val confirm = binding.etKode.text.toString()
         val password = binding.etPassword.text.toString()
         val rePassword = binding.etRePassword.text.toString()
         if (password.length >= 8) {
-            val dataResetPass = ResetPass(email!!, rePassword, password, confirm)
+            val dataResetPass = ResetPass(rePassword, password, confirm)
             resetPassViewModel.resetPassword(dataResetPass)
             resetPassViewModel.resetPass.observe(viewLifecycleOwner) {
                 if (it != null) {
@@ -59,7 +58,6 @@ class ResetPasswordFragment : Fragment() {
                     sPref.putString("password", password)
                     sPref.putString("token", confirm)
                     sPref.apply()
-
                     findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
                     Toast.makeText(requireContext(), "Reset password berhasil!", Toast.LENGTH_SHORT).show()
                 }
