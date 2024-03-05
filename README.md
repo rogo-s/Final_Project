@@ -1,3 +1,5 @@
+![image](https://github.com/rogo-s/Final_Project/assets/100015890/54d3fe6d-ac6e-4f67-a5e3-20d749f6f90e)
+
 # ✈ Flynar ✈
 
 Merupakan sebuah aplikasi berbasis mobile android untuk memudahkan pengguna dalam melakukan pemesanan tiket pesawat baik itu one trip ataupun round trip
